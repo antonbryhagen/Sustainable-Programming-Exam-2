@@ -3,8 +3,8 @@ from dice import Dice
 
 def main():
     dc = Dice()
-    dc.setValue(6)
-    dc.printFace()
+    dc.set_value(6)
+    dc.print_face()
 
 
 if __name__ == '__main__':

@@ -1,18 +1,16 @@
 class Dice:
 
     def __init__(self):
-        pass
+        self.__value = 0
 
-    __value = 0
-
-    def getValue(self):
+    def get_value(self):
         return self.__value
 
-    def setValue(self, newValue):
+    def set_value(self, newValue):
         self.__value = newValue
         print(self.__value)
 
-    def printFace(self):
+    def print_face(self):
         if self.__value != 0:
             if self.__value == 1:
                 print("""
