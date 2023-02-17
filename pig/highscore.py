@@ -1,10 +1,10 @@
-#from player import Player
+from player import Player
 
 class Highscore:
     def __init__(self):
         pass
 
-    def add_highscore():
+    def update_highscore(player: Player):
         pass
     #check for name in file, if name is there, update highscore
     #if name is not there, add it
