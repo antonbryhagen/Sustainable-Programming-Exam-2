@@ -1,19 +1,28 @@
 from player import Player
+import pickle
 
 class Highscore:
     def __init__(self):
         pass
 
-    def update_highscore(player: Player):
+    def get_highscores(self):
+        #create dictionary if first time running game on new system
+        highscores = dict()
+        with open('highscores.bin', 'rb') as highscores_file:
+            try:
+                highscores = pickle.load(highscores_file)
+            except EOFError:    #if no highscores (empty file), use empty dictionary
+                pass
+        return highscores
+
+        
+        #return table with scores from file
+    
+    def update_highscore(self, player: Player):
+        highscores = self.get_highscores()
         pass
     #check for name in file, if name is there, update highscore
     #if name is not there, add it
-
-    def get_highscores():
-        pass
-        #return table with scores
-    
-
 
     #Add new highscore
     #Read highscores
