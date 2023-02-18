@@ -13,5 +13,12 @@ class Dice_hand:
         self.__rolled.clear()
 
     def print_hand(self):
+        print("Hand: ")
         for element in self.__rolled:
-            print(Dice.get_value(element))  # type: ignore
+            print(Dice.get_value(element))
+    
+    def get_score(self):
+        __score = 0
+        for element in self.__rolled:
+            __score += Dice.get_value(element)
+        return __score

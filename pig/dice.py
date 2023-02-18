@@ -8,7 +8,6 @@ class Dice:
 
     def set_value(self, newValue):
         self.__value = newValue
-        print(self.__value)
 
     def print_face(self):
         if self.__value != 0:
