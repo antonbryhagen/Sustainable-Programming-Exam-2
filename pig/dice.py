@@ -1,3 +1,6 @@
+import random
+
+
 class Dice:
 
     def __init__(self):
@@ -5,6 +8,9 @@ class Dice:
 
     def get_value(self):
         return self.__value
+
+    def roll_dice(self):
+        self.__value = random.randrange(1, 7)
 
     def set_value(self, newValue):
         self.__value = newValue

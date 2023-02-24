@@ -3,7 +3,7 @@ from dice import Dice
 
 def main():
     dc = Dice()
-    dc.set_value(6)
+    dc.roll_dice()
     dc.print_face()
 
 
