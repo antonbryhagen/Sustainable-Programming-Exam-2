@@ -44,4 +44,4 @@ class Highscore:
         self.get_highscores() #Get latest highscores before printing
         for player, highscore in self._highscores.items():
             highscore_string += f'Name: {player.get_name()}, Wins: {highscore[0]}, Games played: {highscore[1]}\n'
-        return
+        return highscore_string
