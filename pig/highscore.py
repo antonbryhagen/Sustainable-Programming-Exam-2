@@ -41,6 +41,7 @@ class Highscore:
         #highscore[0] = wins, highscore[1] = games played. stored in list in dict
     def __str__(self):
         highscore_string = ""
-        for player, highscore in self._highscores:
+        self.get_highscores() #Get latest highscores before printing
+        for player, highscore in self._highscores.items():
             highscore_string += f'Name: {player.get_name()}, Wins: {highscore[0]}, Games played: {highscore[1]}\n'
         return
