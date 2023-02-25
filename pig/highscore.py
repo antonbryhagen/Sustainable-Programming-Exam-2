@@ -20,18 +20,19 @@ class Highscore:
     def update_highscore(self, player: Player, won: bool):
         #check for name in file, if name is there, update highscore
         #if name is not there, add it
-        if player in self._highscores:
-            wins = self._highscores[player][0] #get wins from list stored in dict
-            games_played = self._highscores[player][1] + 1 #get played games from list stored in dict and add 1
+        self.get_highscores()
+        if player.get_name() in self._highscores:
+            wins = self._highscores[player.get_name()][0] #get wins from list stored in dict
+            games_played = self._highscores[player.get_name()][1] + 1 #get played games from list stored in dict and add 1
             if won:
                 wins += 1
-            self._highscores[player] = [wins, games_played] #update wins and games played
+            self._highscores[player.get_name()] = [wins, games_played] #update wins and games played
         else:
             if won:
                 highscore = [1, 1] # 1 win, 1 game played
             else:
                 highscore = [0, 1] # 0 wins, 1 game played
-            self._highscores[player] = highscore #add new player and games played
+            self._highscores[player.get_name()] = highscore #add new player and games played
         with open('pig\highscores.bin', 'wb') as highscore_file:
             try:
                 pickle.dump(self._highscores, highscore_file)
@@ -43,5 +44,5 @@ class Highscore:
         highscore_string = ""
         self.get_highscores() #Get latest highscores before printing
         for player, highscore in self._highscores.items():
-            highscore_string += f'Name: {player.get_name()}, Wins: {highscore[0]}, Games played: {highscore[1]}\n'
+            highscore_string += f'Name: {player}, Wins: {highscore[0]}, Games played: {highscore[1]}\n'
         return highscore_string
