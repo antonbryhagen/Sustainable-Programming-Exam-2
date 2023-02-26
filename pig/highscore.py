@@ -2,13 +2,14 @@ from player import Player
 import pickle
 
 class Highscore:
-    def __init__(self):
+    def __init__(self, path):
         self._highscores = dict()
+        self._path = path
 
     def get_highscores(self):
         #create dictionary if first time running game on new system
         
-        with open('pig/highscores.bin', 'rb') as highscores_file:
+        with open(self._path, 'rb') as highscores_file:
             try:
                 self._highscores = pickle.load(highscores_file)
             except EOFError:    #if no highscores (empty file), use empty dictionary
@@ -33,7 +34,7 @@ class Highscore:
             else:
                 highscore = [0, 1] # 0 wins, 1 game played
             self._highscores[player.get_name()] = highscore #add new player and games played
-        with open('pig/highscores.bin', 'wb') as highscore_file:
+        with open(self._path, 'wb') as highscore_file:
             try:
                 pickle.dump(self._highscores, highscore_file)
             except IOError:
