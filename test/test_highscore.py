@@ -1,14 +1,35 @@
 import unittest
+import os
 
 from pig import player
 from pig import highscore
 
 class TestHighscoreClass(unittest.TestCase):
 
+    def setUp(self): # create empty highscore file
+        with open('test/highscores.bin', 'rb') as create_highscore_file:
+            pass
+
     def test_init_default_object(self):
-        res = highscore.Highscore()
+        res = highscore.Highscore('test/highscores.bin') # use test highscore file created
         exp = highscore.Highscore
         self.assertIsInstance(res, exp)
 
-    def test_get_highscores(self):
+    def test_get_highscore_empty(self):
+        """Test getting highscores method with empty highscore file"""
+        highscore_object = highscore.Highscore('test/highscores.bin')
+        with self.assertRaises(EOFError):
+            highscore_object.get_highscores()
+
+    def test_get_highscore(self):
         pass
+
+    def test_update_highscore_new_player(self):
+        pass
+
+    def test_update_highscore_(self):
+        pass
+    
+
+    def tearDown(self):
+        os.remove('test/highscores.bin')
