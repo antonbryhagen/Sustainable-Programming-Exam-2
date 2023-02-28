@@ -10,7 +10,15 @@ class Dice:
         return self.__value
 
     def roll_dice(self):
-        self.__value = random.randrange(1, 7)
+        self.__lowerValue = 1
+        self.__higherValue = 7
+        self.__value = random.randrange(self.__lowerValue, self.__higherValue)
+
+    def get_higher_value(self):
+        return self.__higherValue
+    
+    def get_lower_value(self):
+        return self.__lowerValue
 
     def set_value(self, newValue):
         self.__value = newValue
@@ -66,9 +74,3 @@ class Dice:
                 |  *   *  |
                  ---------
                 """)
-
-    def main():
-        pass
-
-    if __name__ == '__main__':
-        main()
