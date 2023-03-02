@@ -1,4 +1,4 @@
-from player import Player
+from pig import player
 import pickle
 
 class Highscore:
@@ -18,7 +18,7 @@ class Highscore:
         
         #return table with scores from file
     
-    def update_highscore(self, player: Player, won: bool):
+    def update_highscore(self, player: player.Player, won: bool):
         #check for name in file, if name is there, update highscore
         #if name is not there, add it
         self.get_highscores()
