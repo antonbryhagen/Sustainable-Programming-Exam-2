@@ -7,7 +7,7 @@ from pig import highscore
 class TestHighscoreClass(unittest.TestCase):
 
     def setUp(self): # create empty highscore file
-        with open('test/highscores.bin', 'rb') as create_highscore_file:
+        with open('test/highscores.bin', 'wb') as create_highscore_file:
             pass
 
     def test_init_default_object(self):
@@ -18,8 +18,8 @@ class TestHighscoreClass(unittest.TestCase):
     def test_get_highscore_empty(self):
         """Test getting highscores method with empty highscore file"""
         highscore_object = highscore.Highscore('test/highscores.bin')
-        with self.assertRaises(EOFError):
-            highscore_object.get_highscores()
+        highscore_object.get_highscores()
+        self.assertEqual(highscore_object._highscores, {}) #Should be empty dict
 
     def test_get_highscore(self):
         pass
