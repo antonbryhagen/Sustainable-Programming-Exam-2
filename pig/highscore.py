@@ -35,10 +35,7 @@ class Highscore:
                 highscore = [0, 1] # 0 wins, 1 game played
             self._highscores[player.get_name()] = highscore #add new player and games played
         with open(self._path, 'wb') as highscore_file:
-            try:
-                pickle.dump(self._highscores, highscore_file)
-            except IOError:
-                print("Error writing saving highscores")
+            pickle.dump(self._highscores, highscore_file)
         #get as string / list method
         #highscore[0] = wins, highscore[1] = games played. stored in list in dict
     def __str__(self):
