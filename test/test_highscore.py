@@ -18,28 +18,29 @@ class TestHighscoreClass(unittest.TestCase):
 
     def test_get_highscore_empty(self):
         """Test getting highscores method with empty highscore file"""
-        highscore_object = highscore.Highscore('test/highscores.bin')
+        highscore_object = highscore.Highscore('test/highscores.bin')     
         highscore_object.get_highscores()
         self.assertEqual(highscore_object._highscores, {}) #Should be empty dict
 
-    def test_get__and_update_highscore_new_player(self):
-        """Test getting and updating highscores method with highscore file for a new player"""
+    def test_get__and_update_highscore_new_player_win(self):
+        """Test getting and updating highscores method with highscore file for a new player, win"""
         highscore_object = highscore.Highscore('test/highscores.bin')
         player_object = player.Player("Username")
         highscore_object.update_highscore(player_object, True)
         highscore_object.get_highscores()
         self.assertEqual(highscore_object._highscores, {"Username" : [1,1]}) #Should be empty dict
+    
+    def test_get__and_update_highscore_new_player_loose(self):
+        """Test getting and updating highscores method with highscore file for a new player, loose"""
+        highscore_object = highscore.Highscore('test/highscores.bin')
+        player_object = player.Player("Username")
+        highscore_object.update_highscore(player_object, False)
+        highscore_object.get_highscores()
+        self.assertEqual(highscore_object._highscores, {"Username" : [0,1]}) #Should be empty dict
 
     def test_update_highscore(self):
         """Test updating highscore for a player"""
         highscore_object = highscore.Highscore('test/highscores.bin')
-        # Make sure highscore file is empty / contains empty dictionary
-        with open('test/highscores.bin', 'wb') as bin_file:
-            try:
-                pickle.dump({}, bin_file)
-            except IOError:
-                print("Error emptying mock file")
-
         player_object = player.Player("Username")
         highscore_object.update_highscore(player_object, True) # First game
         highscore_object.update_highscore(player_object, True) # Second game
@@ -49,18 +50,11 @@ class TestHighscoreClass(unittest.TestCase):
     def test_update_highscore_lost(self):
         """Test updating highscore for a player when loosing one game"""
         highscore_object = highscore.Highscore('test/highscores.bin')
-        # Make sure highscore file is empty / contains empty dictionary
-        with open('test/highscores.bin', 'wb') as bin_file:
-            try:
-                pickle.dump({}, bin_file)
-            except IOError:
-                print("Error emptying mock file")
-
         player_object = player.Player("Username")
         highscore_object.update_highscore(player_object, True) # First game
         highscore_object.update_highscore(player_object, False) # Second game
         highscore_object.get_highscores()
-        self.assertEqual(highscore_object._highscores, {"Username" : [2, 1]})
+        self.assertEqual(highscore_object._highscores, {"Username" : [1, 2]})  
     
     def test_str(self):
         """Test if __str__ method returns correct string"""
