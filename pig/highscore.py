@@ -1,14 +1,15 @@
-from player import Player
+from pig import player
 import pickle
 
 class Highscore:
-    def __init__(self):
+    def __init__(self, path):
         self._highscores = dict()
+        self._path = path
 
     def get_highscores(self):
         #create dictionary if first time running game on new system
         
-        with open('pig\highscores.bin', 'rb') as highscores_file:
+        with open(self._path, 'rb') as highscores_file:
             try:
                 self._highscores = pickle.load(highscores_file)
             except EOFError:    #if no highscores (empty file), use empty dictionary
@@ -17,7 +18,7 @@ class Highscore:
         
         #return table with scores from file
     
-    def update_highscore(self, player: Player, won: bool):
+    def update_highscore(self, player: player.Player, won: bool):
         #check for name in file, if name is there, update highscore
         #if name is not there, add it
         self.get_highscores()
@@ -33,11 +34,8 @@ class Highscore:
             else:
                 highscore = [0, 1] # 0 wins, 1 game played
             self._highscores[player.get_name()] = highscore #add new player and games played
-        with open('pig\highscores.bin', 'wb') as highscore_file:
-            try:
-                pickle.dump(self._highscores, highscore_file)
-            except IOError:
-                print("Error writing saving highscores")
+        with open(self._path, 'wb') as highscore_file:
+            pickle.dump(self._highscores, highscore_file)
         #get as string / list method
         #highscore[0] = wins, highscore[1] = games played. stored in list in dict
     def __str__(self):
