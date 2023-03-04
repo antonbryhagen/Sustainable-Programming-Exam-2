@@ -1,13 +1,14 @@
 import unittest
 from pig import player
 
+
 class TestPlayerClass(unittest.TestCase):
 
     def test_init_default_object(self):
         res = player.Player("Username")
         exp = player.Player
         self.assertIsInstance(res, exp)
-    
+
     def test_get_name(self):
         test_player = player.Player("Username")
         res = test_player.get_name()
@@ -25,7 +26,7 @@ class TestPlayerClass(unittest.TestCase):
         res = test_player.get_current_turn_score()
         exp = 0
         self.assertEqual(res, exp)
-    
+
     def test_set_name(self):
         test_player = player.Player("Username")
         test_player.set_name("Name1")
