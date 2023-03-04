@@ -1,10 +1,10 @@
-from pig import player
 import pickle
+from pig import player
 
 
 class Highscore:
     def __init__(self, path):
-        self._highscores = dict()
+        self._highscores = {}
         self._path = path
 
     def get_highscores(self):
@@ -18,26 +18,26 @@ class Highscore:
 
         # return table with scores from file
 
-    def update_highscore(self, player: player.Player, won: bool):
+    def update_highscore(self, user: player.Player, won: bool):
         # check for name in file, if name is there, update highscore
         # if name is not there, add it
         self.get_highscores()
-        if player.get_name() in self._highscores:
+        if user.get_name() in self._highscores:
             # get wins from list stored in dict
-            wins = self._highscores[player.get_name()][0]
+            wins = self._highscores[user.get_name()][0]
             # get played games from list stored in dict and add 1
-            games_played = self._highscores[player.get_name()][1] + 1
+            games_played = self._highscores[user.get_name()][1] + 1
             if won:
                 wins += 1
             # update wins and games played
-            self._highscores[player.get_name()] = [wins, games_played]
+            self._highscores[user.get_name()] = [wins, games_played]
         else:
             if won:
                 highscore = [1, 1]  # 1 win, 1 game played
             else:
                 highscore = [0, 1]  # 0 wins, 1 game played
             # add new player and games played
-            self._highscores[player.get_name()] = highscore
+            self._highscores[user.get_name()] = highscore
         with open(self._path, 'wb') as highscore_file:
             pickle.dump(self._highscores, highscore_file)
         # get as string / list method
