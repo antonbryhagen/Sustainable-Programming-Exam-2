@@ -87,3 +87,6 @@ class TestHighscoreClass(unittest.TestCase):
     def tearDown(self):
         """Remove highscore file after each test case"""
         os.remove('test/highscores.bin')
+
+if __name__ == "__main__":
+    unittest.main()
