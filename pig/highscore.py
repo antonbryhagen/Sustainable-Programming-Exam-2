@@ -10,7 +10,7 @@ class Highscore:
         self._highscores = {}
         self._path = path
 
-    def get_highscores(self):
+    def _get_highscores(self):
         """Load highscore dictionary from highscore file."""
         with open(self._path, 'rb') as highscores_file:
             try:
@@ -20,7 +20,7 @@ class Highscore:
 
     def update_highscore(self, user: player.Player, won: bool):
         """Update highscore dictionary and write to highscore file."""
-        self.get_highscores()
+        self._get_highscores()
         # dictionary -> {name: [wins, games_played]}
         if user.get_name() in self._highscores:
             wins = self._highscores[user.get_name()][0]
@@ -39,9 +39,9 @@ class Highscore:
             pickle.dump(self._highscores, highscore_file)
 
     def __str__(self):
-        """Get highscores as a formatted string"""
+        """Get highscores as a formatted string."""
         highscore_string = ""
-        self.get_highscores()  # Get latest highscores before printing
+        self._get_highscores()  # Get latest highscores before printing
         for user, highscore in self._highscores.items():
             highscore_string += (
                 f'Name: {user}, '

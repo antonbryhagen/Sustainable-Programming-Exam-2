@@ -20,7 +20,7 @@ class TestHighscoreClass(unittest.TestCase):
     def test_get_highscore_empty(self):
         """Test getting highscores method with empty highscore file"""
         highscore_object = highscore.Highscore('test/highscores.bin')
-        highscore_object.get_highscores()
+        highscore_object._get_highscores()
         # Should be empty dict
         self.assertEqual(highscore_object._highscores, {})
 
@@ -32,7 +32,7 @@ class TestHighscoreClass(unittest.TestCase):
         highscore_object = highscore.Highscore('test/highscores.bin')
         player_object = player.Player("Username")
         highscore_object.update_highscore(player_object, True)
-        highscore_object.get_highscores()
+        highscore_object._get_highscores()
         self.assertEqual(highscore_object._highscores, {"Username": [1, 1]})
 
     def test_get__and_update_highscore_new_player_loose(self):
@@ -43,7 +43,7 @@ class TestHighscoreClass(unittest.TestCase):
         highscore_object = highscore.Highscore('test/highscores.bin')
         player_object = player.Player("Username")
         highscore_object.update_highscore(player_object, False)
-        highscore_object.get_highscores()
+        highscore_object._get_highscores()
         self.assertEqual(highscore_object._highscores, {"Username": [0, 1]})
 
     def test_update_highscore(self):
@@ -52,7 +52,7 @@ class TestHighscoreClass(unittest.TestCase):
         player_object = player.Player("Username")
         highscore_object.update_highscore(player_object, True)  # First game
         highscore_object.update_highscore(player_object, True)  # Second game
-        highscore_object.get_highscores()
+        highscore_object._get_highscores()
         self.assertEqual(highscore_object._highscores, {"Username": [2, 2]})
 
     def test_update_highscore_lost(self):
@@ -61,7 +61,7 @@ class TestHighscoreClass(unittest.TestCase):
         player_object = player.Player("Username")
         highscore_object.update_highscore(player_object, True)  # First game
         highscore_object.update_highscore(player_object, False)  # Second game
-        highscore_object.get_highscores()
+        highscore_object._get_highscores()
         self.assertEqual(highscore_object._highscores, {"Username": [1, 2]})
 
     def test_str(self):
