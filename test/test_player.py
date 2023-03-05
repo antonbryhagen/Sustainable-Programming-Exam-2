@@ -21,12 +21,6 @@ class TestPlayerClass(unittest.TestCase):
         exp = 0
         self.assertEqual(res, exp)
 
-    def test_get_current_turn_score(self):
-        test_player = player.Player("Username")
-        res = test_player.get_current_turn_score()
-        exp = 0
-        self.assertEqual(res, exp)
-
     def test_set_name(self):
         test_player = player.Player("Username")
         test_player.set_name("Name1")
@@ -38,13 +32,6 @@ class TestPlayerClass(unittest.TestCase):
         test_player = player.Player("Username")
         test_player.set_score(5)
         res = test_player._score
-        exp = 5
-        self.assertEqual(res, exp)
-
-    def test_set_current_turn_score(self):
-        test_player = player.Player("Username")
-        test_player.set_current_turn_score(5)
-        res = test_player._current_turn_score
         exp = 5
         self.assertEqual(res, exp)
 
