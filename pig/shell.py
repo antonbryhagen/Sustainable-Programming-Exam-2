@@ -24,30 +24,37 @@ class Shell(cmd.Cmd):
         self.game = game.Game()
 
     def do_start(self, _):
-        """Start the game with a new number."""
+        """Start the game."""
         msg = (
-            "I am ready and is now thinking of a new secret number"
-            " between {} and {}."
+            "Please select how many players, type one for one player, "
+            "or two for two players"
         )
         self.game.start()
         print(msg.format(self.game.low(), self.game.high()))
 
+    def do_one(self, _):
+        """Select one player mode."""
+        self.game.player_amount(1)
+        print("Type 'player name' to set username")
+
+    def do_two(self, _):
+        """Select two player mode."""
+        self.game.player_amount(2)
+        print("Type 'player name' to set username")
+
+    def do_player(self, arg):
+        """Enter a player name."""
+        self.game.player(arg)
+        if self.game.players() == 2:
+            print("Type 'player name' to set second players username")
+
+    def do_difficulty(self, arg):
+        """Select game difficulty when playing against computer."""
+        self.game.difficulty(arg)
+
     def do_cheat(self, _):
         """Cheat to view the secret number."""
         print("Cheater... the number is {}.".format(self.game.cheat()))
-
-    def do_guess(self, arg):
-        """Do a guess of a number."""
-        msg = "Missing argument on the number you are guessing. Try 'guess 42'."
-        if not arg:
-            print(msg)
-            return
-
-        a_number = int(arg)
-        try:
-            print("Your'e guess is -> {}".format(self.game.guess(a_number)))
-        except ValueError as error:
-            print(error)
 
     def do_exit(self, _):
         # pylint: disable=no-self-use

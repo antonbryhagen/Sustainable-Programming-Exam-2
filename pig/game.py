@@ -4,6 +4,7 @@
 """Guess the number I am thinking of."""
 
 import random
+from pig.player import Player
 
 
 class Game:
@@ -15,7 +16,31 @@ class Game:
 
     def __init__(self):
         """Init the object."""
-        random.seed()
+        self._player_amount = None
+        self.p1 = None
+        self.p2 = None
+        self._created_first_player = False
+        self._difficulty = None
+
+    def player_amount(self, amount):
+        """Set the player amount."""
+        self._player_amount = amount
+
+    def players(self):
+        """Get player amount."""
+        return self._player_amount
+
+    def player(self, name):
+        """Create new player object."""
+        if not self._created_first_player:
+            self.p1 = Player(name)
+            self._created_first_player = True
+        elif self._player_amount == 2 and self._created_first_player:
+            self.p2 = Player(name)
+
+    def difficulty(self, diff):
+        """Set computer difficulty."""
+        self._difficulty = diff
 
     def start(self):
         """Start the game and randomize a new number."""
@@ -32,24 +57,3 @@ class Game:
     def high(self):
         """Get the highest number possible."""
         return self.high_number
-
-    def guess(self, a_number):
-        """
-        Check it the guess is correct, higher or lower than the actual number.
-
-        Raise an exception if the number is out of range.
-        Raise an exception if the number is not an integer.
-        """
-        if not isinstance(a_number, int):
-            raise TypeError("The number should be an integer.")
-
-        if not self.low_number <= a_number <= self.high_number:
-            raise ValueError("The number is higher/lower than max/min value.")
-
-        msg = "Too Low"
-        if a_number == self.the_number:
-            msg = "Correct"
-        elif a_number > self.the_number:
-            msg = "Too High"
-
-        return msg
