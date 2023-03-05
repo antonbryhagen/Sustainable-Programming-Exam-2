@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """Guess the number I am thinking of."""
-import player
 import random
+import player
 
 
 class Game:

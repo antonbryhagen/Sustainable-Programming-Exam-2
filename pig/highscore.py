@@ -1,3 +1,6 @@
+"""Keep track of highscores."""
+
+
 import pickle
 from pig import player
 
@@ -6,7 +9,7 @@ class Highscore:
     """Highscore class."""
 
     def __init__(self, path):
-        """Init the object"""
+        """Init the object."""
         self._highscores = {}
         self._path = path
 

@@ -1,3 +1,6 @@
+"""Manage players."""
+
+
 class Player:
     """Player class."""
 
