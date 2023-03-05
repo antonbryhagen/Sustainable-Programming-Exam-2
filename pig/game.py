@@ -2,9 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """Guess the number I am thinking of."""
-
+import player
 import random
-from pig.player import Player
 
 
 class Game:
@@ -21,6 +20,7 @@ class Game:
         self.p2 = None
         self._created_first_player = False
         self._difficulty = None
+        self.created_players = False
 
     def player_amount(self, amount):
         """Set the player amount."""
@@ -33,10 +33,11 @@ class Game:
     def player(self, name):
         """Create new player object."""
         if not self._created_first_player:
-            self.p1 = Player(name)
+            self.p1 = player.Player(name)
             self._created_first_player = True
         elif self._player_amount == 2 and self._created_first_player:
-            self.p2 = Player(name)
+            self.p2 = player.Player(name)
+            self.created_players = True
 
     def difficulty(self, diff):
         """Set computer difficulty."""

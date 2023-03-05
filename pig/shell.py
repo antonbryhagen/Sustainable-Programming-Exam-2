@@ -15,7 +15,10 @@ import game
 class Shell(cmd.Cmd):
     """Example of class with command actions to roll a dice."""
 
-    intro = "Welcome to the game. Type help or ? to list commands.\n"
+    intro = (
+        "Welcome to the game. Type help or ? to list commands.\n"
+        "Type start to start"
+    )
     prompt = "(game) "
 
     def __init__(self):
@@ -45,7 +48,8 @@ class Shell(cmd.Cmd):
     def do_player(self, arg):
         """Enter a player name."""
         self.game.player(arg)
-        if self.game.players() == 2:
+        print(f'Welcome {arg}')
+        if self.game.players() == 2 and not self.game.created_players:
             print("Type 'player name' to set second players username")
 
     def do_difficulty(self, arg):
