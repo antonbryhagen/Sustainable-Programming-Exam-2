@@ -1,24 +1,20 @@
 class Dice_hand:
 
     def __init__(self):
-        self.__rolled = []
+        self.__rolled = 0
 
-    def add_rolled(self, new_dice):
-        self.__rolled.append(new_dice)
+    def add_rolled(self, value):
+        self.__rolled += value
 
     def clear_rolled(self):
-        self.__rolled.clear()
+        self.__rolled = 0
 
     def get_rolled(self):
         return self.__rolled
 
     def print_hand(self):
         print("Hand: ")
-        for element in self.__rolled:
-            print(element.get_value())
+        print(self.__rolled)
 
     def get_score(self):
-        __score = 0
-        for element in self.__rolled:
-            __score += element.get_value()
-        return __score
+        return self.__rolled

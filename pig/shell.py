@@ -32,33 +32,38 @@ class Shell(cmd.Cmd):
             "Please select how many players, type one for one player, "
             "or two for two players"
         )
-        self.game.start()
-        print(msg.format(self.game.low(), self.game.high()))
+        print(msg)
 
     def do_one(self, _):
         """Select one player mode."""
-        self.game.player_amount(1)
+        self.game.player_amount(True)
         print("Type 'player name' to set username")
 
     def do_two(self, _):
         """Select two player mode."""
-        self.game.player_amount(2)
+        self.game.player_amount(False)
         print("Type 'player name' to set username")
 
     def do_player(self, arg):
         """Enter a player name."""
         self.game.player(arg)
         print(f'Welcome {arg}')
-        if self.game.players() == 2 and not self.game.created_players:
+        if not self.game.singleplayer and not self.game.created_players:
             print("Type 'player name' to set second players username")
 
     def do_difficulty(self, arg):
         """Select game difficulty when playing against computer."""
         self.game.difficulty(arg)
 
-    def do_cheat(self, _):
-        """Cheat to view the secret number."""
-        print("Cheater... the number is {}.".format(self.game.cheat()))
+    def do_roll(self, _):
+        self.game.roll()
+        print(self.game.dc.get_value())
+
+    def do_hold(self, _):
+        """Do a guess of a number."""
+        msg = "You chose to hold"
+        self.game.hold()
+        print(msg)
 
     def do_exit(self, _):
         # pylint: disable=no-self-use
