@@ -62,15 +62,15 @@ class Game:
             self.p_1.set_score(self.p_1.get_score() + self.dh.get_rolled())
             print(f"Player 1 holds at: {self.dh.get_rolled()}")
             self.dh.clear_rolled()
-            self.p1s_turn = False
+            self.p_1_turn = False
             if self.singleplayer:
                 self.computer_play()
-                self.p1s_turn = True
+                self.p_1_turn = True
         else:
             self.p_2.set_score(self.p_2.get_score() + self.dh.get_rolled())
             print(f"Player 2 holds at: {self.dh.get_rolled()}")
             self.dh.clear_rolled()
-            self.p1s_turn = True
+            self.p_1_turn = True
 
     def computer_play(self):
         self.computer.play(self.difficulty, self.dh, self)
