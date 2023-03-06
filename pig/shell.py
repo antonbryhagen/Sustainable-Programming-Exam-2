@@ -13,11 +13,11 @@ import game
 
 
 class Shell(cmd.Cmd):
-    """Example of class with command actions to roll a dice."""
+    """Shell class with commands to run the game."""
 
     intro = (
-        "Welcome to the game. Type help or ? to list commands.\n"
-        "Type start to start"
+        "Welcome to the Pig, the dice game. Type help or ? to list commands.\n"
+        "Type rules to view the rules or type start to start the game"
     )
     prompt = "(game) "
 
@@ -25,6 +25,18 @@ class Shell(cmd.Cmd):
         """Init the object."""
         super().__init__()
         self.game = game.Game()
+    
+    def do_rules(self, _):
+        """Print the rules of the game."""
+        rules = (
+            "Pig is a dice game played by 2 players or 1 player against the computer.\n"
+            "Players take turn rolling a die, trying to get as many points as possible.\n "
+            "After a player rolled the die, the player can choose to roll again or end their turn.\n"
+            "If the player rolls a 1, their turn is over and they loose all points gathered that turn.\n"   
+            "If a player choose to hold, the gathered points gets added to their total score.\n"
+            "The first player to reach 100 or more wins!"
+        )
+        print(rules)
 
     def do_start(self, _):
         """Start the game."""
