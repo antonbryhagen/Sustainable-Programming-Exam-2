@@ -20,7 +20,7 @@ class Game:
         self.dh = dice_hand.Dice_hand()
         self.singleplayer = True
         self.p_1 = player.Player("Temp1")
-        self.p_2 = player.Player("Temp2")
+        self.p_2 = player.Player("Computer")
         self.p_1_turn = True
         self._created_first_player = False
         self.created_players = False
@@ -60,16 +60,22 @@ class Game:
             self.dh.add_rolled(self.dc.get_value())
             if self.p_1_turn:
                 if self.p_1.get_score() + self.dh.get_rolled() >= 100:
-                    print("P1 Win")
+                    print(f"{self.p_1.get_name()} Win")
+                    self.highscore_handler.update_highscore(self.p_1, True)
+                    if not self.singleplayer:
+                        self.highscore_handler.update_highscore(self.p_2, False)
             else:
                 if self.p_2.get_score() + self.dh.get_rolled() >= 100:
-                    print("P2 Win")
+                    print(f"{self.p_2.get_name()} Win")
+                    self.highscore_handler.update_highscore(self.p_1, False)
+                    if not self.singleplayer:
+                        self.highscore_handler.update_highscore(self.p_2, True)
 
     def hold(self):
         if self.p_1_turn:
             self.p_1.set_score(self.p_1.get_score() + self.dh.get_rolled())
-            print(f"Player 1 holds at: {self.dh.get_rolled()}")
-            print(f"Player 1s score: {self.p_1.get_score()}")
+            print(f"Player {self.p_1.get_name()} holds at: {self.dh.get_rolled()}")
+            print(f"Player {self.p_1.get_name()} score: {self.p_1.get_score()}")
             print("---------------------------")
             self.dh.clear_rolled()
             self.p_1_turn = False
@@ -77,8 +83,8 @@ class Game:
                 self.computer_play()
         else:
             self.p_2.set_score(self.p_2.get_score() + self.dh.get_rolled())
-            print(f"Player 2 holds at: {self.dh.get_rolled()}")
-            print(f"Player 2s score: {self.p_2.get_score()}")
+            print(f"Player {self.p_2.get_name()} holds at: {self.dh.get_rolled()}")
+            print(f"Player {self.p_2.get_name()} score: {self.p_2.get_score()}")
             print("---------------------------")
             self.dh.clear_rolled()
             self.p_1_turn = True
