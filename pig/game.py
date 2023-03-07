@@ -48,11 +48,14 @@ class Game:
     def roll(self):
         self.dc.roll_dice()
         if self.p_1_turn:
-            print(f"You rolled a: {self.dc.get_value()}")
+            print("You rolled a:")
+            self.dc.print_face()
         elif not self.p_1_turn and not self.singleplayer:
-            print(f"You rolled a: {self.dc.get_value()}")
+            print("You rolled a:")
+            self.dc.print_face()
         else:
-            print(f"Computer rolled a: {self.dc.get_value()}")
+            print("Computer rolled a:")
+            self.dc.print_face()
         if self.dc.get_value() == 1:
             self.dh.clear_rolled()
             self.hold()
