@@ -69,13 +69,10 @@ class Shell(cmd.Cmd):
 
     def do_roll(self, _):
         self.game.roll()
-        print(self.game.dc.get_value())
 
     def do_hold(self, _):
         """Do a guess of a number."""
-        msg = "You chose to hold"
         self.game.hold()
-        print(msg)
 
     def do_rename(self, arg1, arg2):
         """Rename specified player."""

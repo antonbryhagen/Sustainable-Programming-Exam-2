@@ -2,16 +2,15 @@
 # -*- coding: utf-8 -*-
 
 """
-Lets play a game of "Guess my number".
+This is a game of pig.
 
-I will be thinking af a number between 1 and 100.
-You shall try to guess the number.
+Take turns rolling a dice.
 
-I will let you know if your guess is lower or higher than
-the number that I am thinking of.
+You can roll as many times as you want each turn or choose to hold.
 
-You have 5 guesses. Then you loose.
+If you roll a "1" your turn ends and you loose all points for that turn.
 
+First to 100 points win.
 """
 
 import shell
