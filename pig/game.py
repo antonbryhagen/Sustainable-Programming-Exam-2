@@ -8,6 +8,7 @@ import player
 import dice
 import dice_hand
 import intelligence
+import highscore
 
 
 class Game:
@@ -25,6 +26,7 @@ class Game:
         self.created_players = False
         self._difficulty = 1
         self.computer = intelligence.Intelligence()
+        self.highscore_handler = highscore.Highscore('pig/highscores.bin')
 
     def player_amount(self, one_player):
         """Set the player amount."""
@@ -94,3 +96,12 @@ class Game:
                 self.p_1_turn = True
             if self.p_1_turn:
                 break
+
+    def rename(self, current_name, new_name):
+        """Rename specified player and transfer highscore."""
+        if current_name == self.p_1.get_name():
+            self.p_1.set_name(new_name)
+            self.highscore_handler.update_name(current_name, new_name)
+        elif current_name == self.p_2.get_name():
+            self.p_2.set_name(new_name)
+            self.highscore_handler.update_name(current_name, new_name)
