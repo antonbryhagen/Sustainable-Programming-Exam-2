@@ -28,7 +28,6 @@ class Game:
         self.computer = intelligence.Intelligence()
         self.highscore_handler = highscore.Highscore('pig/highscores.bin')
         self.started = False
-        self.able_to_restart = False
         self.in_round = False
 
     def player_amount(self, one_player):
@@ -70,12 +69,14 @@ class Game:
                 if self.p_1.get_score() + self.dh.get_rolled() >= 100:
                     print(f"{self.p_1.get_name()} Win")
                     self.highscore_handler.update_highscore(self.p_1, True)
+                    self.in_round = False
                     if not self.singleplayer:
                         self.highscore_handler.update_highscore(self.p_2, False)
             else:
                 if self.p_2.get_score() + self.dh.get_rolled() >= 100:
                     print(f"{self.p_2.get_name()} Win")
                     self.highscore_handler.update_highscore(self.p_1, False)
+                    self.in_round = False
                     if not self.singleplayer:
                         self.highscore_handler.update_highscore(self.p_2, True)
 
@@ -119,6 +120,9 @@ class Game:
         elif current_name == self.p_2.get_name():
             self.p_2.set_name(new_name)
             self.highscore_handler.update_name(current_name, new_name)
+        else:
+            msg = ("You can only change one of the currently playing names!")
+            print(msg)
 
     def print_menu(self):
         print("""Welocme to the game!

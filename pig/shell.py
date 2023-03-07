@@ -44,6 +44,7 @@ First to 100 points win.""")
         """Start the game."""
         if not self.game.started:
             self.game.print_menu()
+            self.game.started = True
         else:
             print("Already started the game.")
     
@@ -65,17 +66,21 @@ First to 100 points win.""")
 
     def do_one(self, _):
         """Select one player mode."""
-        if self.game.singleplayer == None:
+        if self.game.singleplayer == None and self.game.started:
             self.game.player_amount(True)
             print("Type 'player name' to set username")
+        elif not self.game.started:
+            print("Start the game before selecting player amount.")
         else:
             print("Already selected player amount.")
 
     def do_two(self, _):
         """Select two player mode."""
-        if self.game.singleplayer == None:
+        if self.game.singleplayer == None and self.game.started:
             self.game.player_amount(False)
             print("Type 'player name' to set username")
+        elif not self.game.started:
+            print("Start the game before selecting player amount.")
         else:
             print("Already selected player amount.")
 
@@ -93,7 +98,7 @@ First to 100 points win.""")
     def do_difficulty(self, arg):
         """Select game difficulty when playing against computer."""
         if self.game.singleplayer:
-            if arg <= 3 and arg >=1:
+            if arg <= "3" and arg >= "1":
                 self.game.difficulty(arg)
             else:
                 print("Enter a valid difficulty: 1, 2 or 3")
@@ -114,12 +119,20 @@ First to 100 points win.""")
         else:
             print("Currently not playing.")
 
-    def do_rename(self, arg1, arg2):
+    def do_rename(self, arg1):
         """Rename specified player."""
-        if self.game._created_first_player or self.game.created_players:
+        if ((self.game._created_first_player or self.game.created_players)
+            and not self.game.in_round):
+            arg2 = arg1.split()[1]
+            arg1 = arg1.split()[0]
             self.game.rename(arg1, arg2)
         else:
             print("There are currently no players to rename.")
+
+    def do_highscore(self, _):
+        """View highscore list."""
+        if not self.game.in_round and self.game.started:
+            print(self.game.highscore_handler)
 
     def do_exit(self, _):
         # pylint: disable=no-self-use
