@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Guess the number I am thinking of."""
+"""Roll a dice"""
 # import random
 
 import player
@@ -45,6 +45,12 @@ class Game:
 
     def roll(self):
         self.dc.roll_dice()
+        if self.p_1_turn:
+            print(f"You rolled a: {self.dc.get_value()}")
+        elif not self.p_1_turn and not self.singleplayer:
+            print(f"You rolled a: {self.dc.get_value()}")
+        else:
+            print(f"Computer rolled a: {self.dc.get_value()}")
         if self.dc.get_value() == 1:
             self.dh.clear_rolled()
             self.hold()
@@ -61,7 +67,8 @@ class Game:
         if self.p_1_turn:
             self.p_1.set_score(self.p_1.get_score() + self.dh.get_rolled())
             print(f"Player 1 holds at: {self.dh.get_rolled()}")
-            print(f"PLayer 1s score: {self.p_1.get_score()}")
+            print(f"Player 1s score: {self.p_1.get_score()}")
+            print("---------------------------")
             self.dh.clear_rolled()
             self.p_1_turn = False
             if self.singleplayer:
@@ -69,12 +76,13 @@ class Game:
         else:
             self.p_2.set_score(self.p_2.get_score() + self.dh.get_rolled())
             print(f"Player 2 holds at: {self.dh.get_rolled()}")
-            print(f"PLayer 2s score: {self.p_2.get_score()}")
+            print(f"Player 2s score: {self.p_2.get_score()}")
+            print("---------------------------")
             self.dh.clear_rolled()
             self.p_1_turn = True
 
     def computer_play(self):
-        print("Computer playing")
+        print("Computer playing:")
         while (True):
             action = self.computer.play(self._difficulty, self.dh,
                                         self.p_1.get_score(),
@@ -85,5 +93,4 @@ class Game:
                 self.hold()
                 self.p_1_turn = True
             if self.p_1_turn:
-                print("broke")
                 break

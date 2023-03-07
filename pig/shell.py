@@ -57,7 +57,6 @@ class Shell(cmd.Cmd):
 
     def do_roll(self, _):
         self.game.roll()
-        print(self.game.dc.get_value())
 
     def do_hold(self, _):
         """Do a guess of a number."""
