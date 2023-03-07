@@ -77,6 +77,10 @@ class Shell(cmd.Cmd):
         self.game.hold()
         print(msg)
 
+    def do_rename(self, arg1, arg2):
+        """Rename specified player."""
+        self.game.rename(arg1, arg2)
+
     def do_exit(self, _):
         # pylint: disable=no-self-use
         """Leave the game."""
