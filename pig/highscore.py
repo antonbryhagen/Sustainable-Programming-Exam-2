@@ -44,7 +44,7 @@ class Highscore:
     def update_name(self, current_name, new_name):
         """Load highscores and replace old name with new name."""
         self._get_highscores()
-        if current_name in self._highscores and new_name not in self._highscores:
+        if (current_name in self._highscores) and (new_name not in self._highscores):
             highscore = self._highscores[current_name]
             del self._highscores[current_name]
             self._highscores[new_name] = highscore
@@ -52,14 +52,6 @@ class Highscore:
                 pickle.dump(self._highscores, highscore_file)
         elif new_name in self._highscores:
             print("New name already exists, can't transfer highscore.")
-        else:
-            msg = (
-                "No highscore associated with that name, ignore this message"
-                " if you haven't played before, otherwise make sure you enter"
-                " correct name to change from."
-            )
-            print(msg)
-
 
     def __str__(self):
         """Get highscores as a formatted string."""

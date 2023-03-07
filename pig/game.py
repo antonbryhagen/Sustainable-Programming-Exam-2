@@ -18,7 +18,7 @@ class Game:
         """Init the object."""
         self.dc = dice.Dice()
         self.dh = dice_hand.Dice_hand()
-        self.singleplayer = True
+        self.singleplayer = None
         self.p_1 = player.Player("Temp1")
         self.p_2 = player.Player("Computer")
         self.p_1_turn = True
@@ -27,6 +27,8 @@ class Game:
         self._difficulty = 1
         self.computer = intelligence.Intelligence()
         self.highscore_handler = highscore.Highscore('pig/highscores.bin')
+        self.started = False
+        self.in_round = False
 
     def player_amount(self, one_player):
         """Set the player amount."""
@@ -40,10 +42,12 @@ class Game:
         elif not self.singleplayer and self._created_first_player:
             self.p_2 = player.Player(name)
             self.created_players = True
+            self.in_round = True
 
     def difficulty(self, diff):
         """Set computer difficulty."""
         self._difficulty = diff
+        self.in_round = True
 
     def roll(self):
         self.dc.roll_dice()
@@ -65,12 +69,14 @@ class Game:
                 if self.p_1.get_score() + self.dh.get_rolled() >= 100:
                     print(f"{self.p_1.get_name()} Win")
                     self.highscore_handler.update_highscore(self.p_1, True)
+                    self.in_round = False
                     if not self.singleplayer:
                         self.highscore_handler.update_highscore(self.p_2, False)
             else:
                 if self.p_2.get_score() + self.dh.get_rolled() >= 100:
                     print(f"{self.p_2.get_name()} Win")
                     self.highscore_handler.update_highscore(self.p_1, False)
+                    self.in_round = False
                     if not self.singleplayer:
                         self.highscore_handler.update_highscore(self.p_2, True)
 
@@ -114,9 +120,29 @@ class Game:
         elif current_name == self.p_2.get_name():
             self.p_2.set_name(new_name)
             self.highscore_handler.update_name(current_name, new_name)
+        else:
+            msg = ("You can only change one of the currently playing names!")
+            print(msg)
 
     def print_menu(self):
         print("""Welocme to the game!
         Type "one" to play against the computer
         Type "two" to play against a friend
         Type "highscore" to view highscores""")
+    
+    def cheat(self):
+        if self.p_1_turn:
+            self.p_1.set_score(100)
+            self.roll()
+        else:
+            self.p_2.set_score(100)
+            self.roll()
+
+    def restart(self):
+        self.p_1.set_score(0)
+        self.p_2.set_score(0)
+        self.dh.clear_rolled()
+        self.dh.clear_history()
+        self.p_1_turn = True
+    
+     
