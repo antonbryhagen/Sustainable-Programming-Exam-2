@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """Guess the number I am thinking of."""
-import random
+# import random
 
 import player
 import dice
@@ -25,7 +25,6 @@ class Game:
         self.created_players = False
         self._difficulty = 1
         self.computer = intelligence.Intelligence()
-        
 
     def player_amount(self, one_player):
         """Set the player amount."""
@@ -43,7 +42,7 @@ class Game:
     def difficulty(self, diff):
         """Set computer difficulty."""
         self._difficulty = diff
-    
+
     def roll(self):
         self.dc.roll_dice()
         if self.dc.get_value() == 1:
@@ -52,25 +51,39 @@ class Game:
         else:
             self.dh.add_rolled(self.dc.get_value())
             if self.p_1_turn:
-                if self.p_1.get_score() + self.dc.get_value() >= 100:
+                if self.p_1.get_score() + self.dh.get_rolled() >= 100:
                     print("P1 Win")
             else:
-                if self.p_2.get_score() + self.dc.get_value() >= 100:
-                    print("P2 Win")    
+                if self.p_2.get_score() + self.dh.get_rolled() >= 100:
+                    print("P2 Win")
+
     def hold(self):
         if self.p_1_turn:
             self.p_1.set_score(self.p_1.get_score() + self.dh.get_rolled())
             print(f"Player 1 holds at: {self.dh.get_rolled()}")
+            print(f"PLayer 1s score: {self.p_1.get_score()}")
             self.dh.clear_rolled()
             self.p_1_turn = False
             if self.singleplayer:
                 self.computer_play()
-                self.p_1_turn = True
         else:
             self.p_2.set_score(self.p_2.get_score() + self.dh.get_rolled())
             print(f"Player 2 holds at: {self.dh.get_rolled()}")
+            print(f"PLayer 2s score: {self.p_2.get_score()}")
             self.dh.clear_rolled()
             self.p_1_turn = True
 
     def computer_play(self):
-        self.computer.play(self.difficulty, self.dh, self)
+        print("Computer playing")
+        while (True):
+            action = self.computer.play(self._difficulty, self.dh,
+                                        self.p_1.get_score(),
+                                        self.p_2.get_score())
+            if action == "roll":
+                self.roll()
+            else:
+                self.hold()
+                self.p_1_turn = True
+            if self.p_1_turn:
+                print("broke")
+                break

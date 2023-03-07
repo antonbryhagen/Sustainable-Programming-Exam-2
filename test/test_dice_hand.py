@@ -17,7 +17,7 @@ class TestGameClass(unittest.TestCase):
         dc = dice.Dice()
         dh.add_rolled(dc)
         r = dh.get_rolled()
-        exp = isinstance(r[0], dice.Dice)
+        exp = isinstance(r, dice.Dice)
         self.assertTrue(exp)
     
     def test_clear_rolled(self):
@@ -26,8 +26,7 @@ class TestGameClass(unittest.TestCase):
         dc = dice.Dice()
         dh.add_rolled(dc)
         dh.clear_rolled()
-        rolled = dh.get_rolled()
-        exp = len(rolled)
+        exp = dh.get_rolled()
         self.assertEqual(exp, 0)
     
     def test_print_hand(self):
