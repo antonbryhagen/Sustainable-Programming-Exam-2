@@ -31,13 +31,14 @@ class Shell(cmd.Cmd):
         rules = (
             """This is a game of pig.
 
-Take turns rolling a dice.
+            Take turns rolling a dice.
 
-You can roll as many times as you want each turn or choose to hold.
+            You can roll as many times as you want each turn or choose to hold.
 
-If you roll a "1" your turn ends and you loose all points for that turn.
+            If you roll a "1" your turn ends and you loose all points for that turn.
 
-First to 100 points win.""")
+            First to 100 points win."""
+        )
         print(rules)
 
     def do_start(self, _):
