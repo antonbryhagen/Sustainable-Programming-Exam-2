@@ -42,58 +42,84 @@ First to 100 points win.""")
 
     def do_start(self, _):
         """Start the game."""
-        self.game.print_menu()
+        if not self.game.started:
+            self.game.print_menu()
+        else:
+            print("Already started the game.")
     
     def do_cheat(self, _):
-        """Cheats"""
-        print("You cheated!")
-        if self.game.p_1_turn:
-            self.game.p_1.set_score(100)
-            self.game.roll()
+        """Cheats."""
+        if self.game.in_round:
+            print("You cheated!")
+            self.game.cheat()
         else:
-            self.game.p_2.set_score(100)
-            self.game.roll()
+            print("Currently not playing.")
 
     def do_restart(self, _):
-        """Whipes player points and starts game from beginning"""
-        print("Resetting game")
-        self.game.p_1.set_score(0)
-        self.game.p_2.set_score(0)
-        self.game.dh.clear_rolled()
-        self.game.dh.clear_history()
-        self.game.p_1_turn = True
+        """Whipes player points and starts game from beginning."""
+        if self.game.in_round:
+            print("Resetting game")
+            self.game.restart()
+        else:
+            print("Currently not playing.")
 
     def do_one(self, _):
         """Select one player mode."""
-        self.game.player_amount(True)
-        print("Type 'player name' to set username")
+        if self.game.singleplayer == None:
+            self.game.player_amount(True)
+            print("Type 'player name' to set username")
+        else:
+            print("Already selected player amount.")
 
     def do_two(self, _):
         """Select two player mode."""
-        self.game.player_amount(False)
-        print("Type 'player name' to set username")
+        if self.game.singleplayer == None:
+            self.game.player_amount(False)
+            print("Type 'player name' to set username")
+        else:
+            print("Already selected player amount.")
 
     def do_player(self, arg):
         """Enter a player name."""
-        self.game.player(arg)
-        print(f'Welcome {arg}')
-        if not self.game.singleplayer and not self.game.created_players:
-            print("Type 'player name' to set second players username")
+        if ((self.game.singleplayer and not self.game._created_first_player) or 
+            (not self.game.singleplayer and not self.game.created_players)):
+                self.game.player(arg)
+                print(f'Welcome {arg}')
+                if not self.game.singleplayer and not self.game.created_players:
+                    print("Type 'player name' to set second players username")
+        else:
+            print("Already created player(s).")
 
     def do_difficulty(self, arg):
         """Select game difficulty when playing against computer."""
-        self.game.difficulty(arg)
+        if self.game.singleplayer:
+            if arg <= 3 and arg >=1:
+                self.game.difficulty(arg)
+            else:
+                print("Enter a valid difficulty: 1, 2 or 3")
+        else:
+            print("Unable to change difficulty.")
 
     def do_roll(self, _):
-        self.game.roll()
+        """Roll the dice"""
+        if self.game.in_round:
+            self.game.roll()
+        else:
+            print("Currently not playing.")
 
     def do_hold(self, _):
         """Do a guess of a number."""
-        self.game.hold()
+        if self.game.in_round:
+            self.game.hold()
+        else:
+            print("Currently not playing.")
 
     def do_rename(self, arg1, arg2):
         """Rename specified player."""
-        self.game.rename(arg1, arg2)
+        if self.game._created_first_player or self.game.created_players:
+            self.game.rename(arg1, arg2)
+        else:
+            print("There are currently no players to rename.")
 
     def do_exit(self, _):
         # pylint: disable=no-self-use
