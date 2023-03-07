@@ -12,6 +12,9 @@ class Dice_hand:
     
     def get_history(self):
         return self.__history
+    
+    def clear_history(self):
+        self.__history.clear()
 
     def clear_rolled(self):
         self.__rolled = 0

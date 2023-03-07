@@ -48,11 +48,14 @@ class Game:
     def roll(self):
         self.dc.roll_dice()
         if self.p_1_turn:
-            print(f"You rolled a: {self.dc.get_value()}")
+            print("You rolled a:")
+            self.dc.print_face()
         elif not self.p_1_turn and not self.singleplayer:
-            print(f"You rolled a: {self.dc.get_value()}")
+            print("You rolled a:")
+            self.dc.print_face()
         else:
-            print(f"Computer rolled a: {self.dc.get_value()}")
+            print("Computer rolled a:")
+            self.dc.print_face()
         if self.dc.get_value() == 1:
             self.dh.clear_rolled()
             self.hold()
@@ -111,3 +114,9 @@ class Game:
         elif current_name == self.p_2.get_name():
             self.p_2.set_name(new_name)
             self.highscore_handler.update_name(current_name, new_name)
+
+    def print_menu(self):
+        print("""Welocme to the game!
+        Type "one" to play against the computer
+        Type "two" to play against a friend
+        Type "highscore" to view highscores""")
