@@ -2,7 +2,7 @@
 
 
 import pickle
-from pig import player
+import player
 
 
 class Highscore:

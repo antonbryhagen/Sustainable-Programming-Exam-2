@@ -29,22 +29,39 @@ class Shell(cmd.Cmd):
     def do_rules(self, _):
         """Print the rules of the game."""
         rules = (
-            "Pig is a dice game played by 2 players or 1 player against the computer.\n"
-            "Players take turn rolling a die, trying to get as many points as possible.\n "
-            "After a player rolled the die, the player can choose to roll again or end their turn.\n"
-            "If the player rolls a 1, their turn is over and they loose all points gathered that turn.\n"   
-            "If a player choose to hold, the gathered points gets added to their total score.\n"
-            "The first player to reach 100 or more wins!"
-        )
+            """This is a game of pig.
+
+Take turns rolling a dice.
+
+You can roll as many times as you want each turn or choose to hold.
+
+If you roll a "1" your turn ends and you loose all points for that turn.
+
+First to 100 points win.""")
         print(rules)
 
     def do_start(self, _):
         """Start the game."""
-        msg = (
-            "Please select how many players, type one for one player, "
-            "or two for two players"
-        )
-        print(msg)
+        self.game.print_menu()
+    
+    def do_cheat(self, _):
+        """Cheats"""
+        print("You cheated!")
+        if self.game.p_1_turn:
+            self.game.p_1.set_score(100)
+            self.game.roll()
+        else:
+            self.game.p_2.set_score(100)
+            self.game.roll()
+
+    def do_restart(self, _):
+        """Whipes player points and starts game from beginning"""
+        print("Resetting game")
+        self.game.p_1.set_score(0)
+        self.game.p_2.set_score(0)
+        self.game.dh.clear_rolled()
+        self.game.dh.clear_history()
+        self.game.p_1_turn = True
 
     def do_one(self, _):
         """Select one player mode."""

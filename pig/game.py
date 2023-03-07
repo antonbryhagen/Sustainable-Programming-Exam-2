@@ -105,3 +105,9 @@ class Game:
         elif current_name == self.p_2.get_name():
             self.p_2.set_name(new_name)
             self.highscore_handler.update_name(current_name, new_name)
+
+    def print_menu(self):
+        print("""Welocme to the game!
+        Type "one" to play against the computer
+        Type "two" to play against a friend
+        Type "highscore" to view highscores""")
