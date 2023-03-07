@@ -9,6 +9,9 @@ class Dice_hand:
 
     def add_history(self, value):
         self.__history.append(value)
+    
+    def get_history(self):
+        return self.__history
 
     def clear_rolled(self):
         self.__rolled = 0
