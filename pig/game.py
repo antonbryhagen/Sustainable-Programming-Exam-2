@@ -4,11 +4,11 @@
 """Roll a dice"""
 # import random
 
-import player
-import dice
-import dice_hand
-import intelligence
-import highscore
+import pig.player as player
+import pig.dice as dice 
+import pig.dice_hand as dice_hand
+import pig.intelligence as intelligence
+import pig.highscore as highscore
 
 
 class Game:

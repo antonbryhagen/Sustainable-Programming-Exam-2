@@ -9,7 +9,7 @@ You can read about the cmd module in the docs:
 """
 
 import cmd
-import game
+import pig.game as game
 
 
 class Shell(cmd.Cmd):
