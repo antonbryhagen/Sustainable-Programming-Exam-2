@@ -26,16 +26,16 @@ class Histogram:
             for j in range(1, 7):
                 if self._rounded_percentage_dict[j] >= i:
                     if j == 1:
-                        row += f'{(i-1)*10:3}-{i*10:3}% | * '
+                        row += f'{(i-1)*10:3}-{i*10:3}% | █'
                     else:
-                        row += ' * '
+                        row += '█'
                 else:
                     if j == 1:
-                        row += f'{(i-1)*10:3}-{i*10:3}% |   '
+                        row += f'{(i-1)*10:3}-{i*10:3}% |  '
                     else:
-                        row += '   '
+                        row += ' '
             chart += row + '\n'
-        chart += ('------------------------------\n'
-                  '    Face | 1  2  3  4  5  6')
+        chart += ('-----------------------\n'
+                  '    Face | 123456')
 
         return chart
