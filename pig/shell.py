@@ -48,7 +48,7 @@ class Shell(cmd.Cmd):
             self.game.started = True
         else:
             print("Already started the game.")
-    
+
     def do_cheat(self, _):
         """Cheats."""
         if self.game.in_round:

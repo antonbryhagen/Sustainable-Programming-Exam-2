@@ -50,6 +50,7 @@ class Game:
         self.in_round = True
 
     def roll(self):
+        """Rolls dice and checks if a player has won"""
         self.dc.roll_dice()
         if self.p_1_turn:
             print("You rolled a:")
@@ -81,10 +82,13 @@ class Game:
                         self.highscore_handler.update_highscore(self.p_2, True)
 
     def hold(self):
+        """Adds score to players total points and changes turn"""
         if self.p_1_turn:
             self.p_1.set_score(self.p_1.get_score() + self.dh.get_rolled())
-            print(f"Player {self.p_1.get_name()} holds at: {self.dh.get_rolled()}")
-            print(f"Player {self.p_1.get_name()} score: {self.p_1.get_score()}")
+            print(f"Player {self.p_1.get_name()} holds at:\
+     {self.dh.get_rolled()}")
+            print(f"Player {self.p_1.get_name()} score:\
+     {self.p_1.get_score()}")
             print("---------------------------")
             self.dh.clear_rolled()
             self.p_1_turn = False
@@ -92,13 +96,16 @@ class Game:
                 self.computer_play()
         else:
             self.p_2.set_score(self.p_2.get_score() + self.dh.get_rolled())
-            print(f"Player {self.p_2.get_name()} holds at: {self.dh.get_rolled()}")
-            print(f"Player {self.p_2.get_name()} score: {self.p_2.get_score()}")
+            print(f"Player {self.p_2.get_name()} holds at:\
+ {self.dh.get_rolled()}")
+            print(f"Player {self.p_2.get_name()} score:\
+ {self.p_2.get_score()}")
             print("---------------------------")
             self.dh.clear_rolled()
             self.p_1_turn = True
 
     def computer_play(self):
+        """Calls AI:s method to play and executes its instructions"""
         print("Computer playing:")
         while (True):
             action = self.computer.play(self._difficulty, self.dh,
@@ -125,12 +132,14 @@ class Game:
             print(msg)
 
     def print_menu(self):
+        """Prints menu"""
         print("""Welocme to the game!
         Type "one" to play against the computer
         Type "two" to play against a friend
         Type "highscore" to view highscores""")
-    
+
     def cheat(self):
+        """Sets the currently playing players score to 100"""
         if self.p_1_turn:
             self.p_1.set_score(100)
             self.roll()
@@ -139,10 +148,9 @@ class Game:
             self.roll()
 
     def restart(self):
+        """Resets points and history"""
         self.p_1.set_score(0)
         self.p_2.set_score(0)
         self.dh.clear_rolled()
         self.dh.clear_history()
         self.p_1_turn = True
-    
-     
