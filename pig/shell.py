@@ -141,6 +141,7 @@ class Shell(cmd.Cmd):
             print(self.game.highscore_handler)
 
     def do_Y(self, _):
+        """Restarts game from beginning"""
         self.game.restart()
         self.game.singleplayer = None
         self.game._created_first_player = False
