@@ -11,13 +11,13 @@ class TestGameClass(unittest.TestCase):
         value = dc.get_value()
         exp = 0 <= value
         self.assertTrue(exp)
-    
+
     def test_get_value(self):
         """Instantiates object and tests getter for vaiable __value"""
         dc = dice.Dice()
         value = dc.get_value()
         self.assertEqual(0, value)
-    
+
     def test_roll_dice(self):
         """Rolls dice and checks that the number is within bounds"""
         dc = dice.Dice()
@@ -33,12 +33,90 @@ class TestGameClass(unittest.TestCase):
         dc.set_value(4)
         exp = dc.get_value() == 4
         self.assertTrue(exp)
-    
-    def test_print_face(self):
+
+    def test_print_face_1(self):
         """Rolls dice and prints face"""
         dc = dice.Dice()
-        dc.roll_dice()
+        dc.set_value(1)
         dc.print_face()
+        exp = """
+                 ---------
+                |         |
+                |    *    |
+                |         |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
+    
+    def test_print_face_2(self):
+        """Rolls dice and prints face"""
+        dc = dice.Dice()
+        dc.set_value(2)
+        dc.print_face()
+        exp = """
+                 ---------
+                |  *      |
+                |         |
+                |      *  |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
+    
+    def test_print_face_3(self):
+        """Rolls dice and prints face"""
+        dc = dice.Dice()
+        dc.set_value(3)
+        dc.print_face()
+        exp = """
+                 ---------
+                |  *      |
+                |    *    |
+                |      *  |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
+    
+    def test_print_face_4(self):
+        """Rolls dice and prints face"""
+        dc = dice.Dice()
+        dc.set_value(4)
+        dc.print_face()
+        exp = """
+                 ---------
+                |  *   *  |
+                |         |
+                |  *   *  |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
+    
+    def test_print_face_5(self):
+        """Rolls dice and prints face"""
+        dc = dice.Dice()
+        dc.set_value(5)
+        dc.print_face()
+        exp = """
+                 ---------
+                |  *   *  |
+                |    *    |
+                |  *   *  |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
+
+    def test_print_face_6(self):
+        """Rolls dice and prints face"""
+        dc = dice.Dice()
+        dc.set_value(6)
+        dc.print_face()
+        exp = """
+                 ---------
+                |  *   *  |
+                |  *   *  |
+                |  *   *  |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
 
 if __name__ == "__main__":
     unittest.main()

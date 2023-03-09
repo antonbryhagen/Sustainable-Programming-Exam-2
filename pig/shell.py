@@ -48,7 +48,7 @@ class Shell(cmd.Cmd):
             self.game.started = True
         else:
             print("Already started the game.")
-    
+
     def do_cheat(self, _):
         """Cheats."""
         if self.game.in_round:
@@ -91,8 +91,12 @@ class Shell(cmd.Cmd):
             (not self.game.singleplayer and not self.game.created_players)):
                 self.game.player(arg)
                 print(f'Welcome {arg}')
+                if self.game.singleplayer:
+                    print("Type 'difficulty 1, 2 or 3' to select difficulty")
                 if not self.game.singleplayer and not self.game.created_players:
                     print("Type 'player name' to set second players username")
+                if not self.game.singleplayer and self.game.created_players:
+                    print("Type 'roll' to roll the dice and 'hold' to end your turn")
         else:
             print("Already created player(s).")
 
@@ -101,6 +105,7 @@ class Shell(cmd.Cmd):
         if self.game.singleplayer:
             if arg <= "3" and arg >= "1":
                 self.game.difficulty(arg)
+                print("Type 'roll' to roll the dice and 'hold' to end your turn")
             else:
                 print("Enter a valid difficulty: 1, 2 or 3")
         else:
@@ -134,6 +139,19 @@ class Shell(cmd.Cmd):
         """View highscore list."""
         if not self.game.in_round and self.game.started:
             print(self.game.highscore_handler)
+
+    def do_Y(self, _):
+        """Restarts game from beginning"""
+        self.game.restart()
+        self.game.singleplayer = None
+        self.game._created_first_player = False
+        self.game.created_players = False
+        self.game.in_round = False
+        self.game.print_menu()
+
+    def do_N(self, arg):
+        """Leave the game."""
+        return self.do_exit(arg)
 
     def do_exit(self, _):
         # pylint: disable=no-self-use
