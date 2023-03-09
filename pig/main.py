@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from shell import Shell
+import shell
 
 
 def main():
     """Execute the main program."""
     print(__doc__)
-    Shell().cmdloop()
+    shell.Shell().cmdloop()
 
 
 if __name__ == "__main__":

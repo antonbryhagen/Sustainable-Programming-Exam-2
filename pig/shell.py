@@ -9,7 +9,7 @@ You can read about the cmd module in the docs:
 """
 
 import cmd
-from game import Game
+import game
 
 
 class Shell(cmd.Cmd):
@@ -24,7 +24,7 @@ class Shell(cmd.Cmd):
     def __init__(self):
         """Init the object."""
         super().__init__()
-        self.game = Game()
+        self.game = game.Game()
     
     def do_rules(self, _):
         """Print the rules of the game."""
