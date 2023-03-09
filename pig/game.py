@@ -69,6 +69,7 @@ class Game:
             if self.p_1_turn:
                 if self.p_1.get_score() + self.dh.get_rolled() >= 100:
                     print(f"{self.p_1.get_name()} Win")
+                    self.player_won()
                     self.highscore_handler.update_highscore(self.p_1, True)
                     self.in_round = False
                     if not self.singleplayer:
@@ -76,6 +77,7 @@ class Game:
             else:
                 if self.p_2.get_score() + self.dh.get_rolled() >= 100:
                     print(f"{self.p_2.get_name()} Win")
+                    self.player_won()
                     self.highscore_handler.update_highscore(self.p_1, False)
                     self.in_round = False
                     if not self.singleplayer:
@@ -154,3 +156,6 @@ class Game:
         self.dh.clear_rolled()
         self.dh.clear_history()
         self.p_1_turn = True
+
+    def player_won(self):
+        print("Play again? Y/N")

@@ -11,13 +11,13 @@ class TestGameClass(unittest.TestCase):
         value = dc.get_value()
         exp = 0 <= value
         self.assertTrue(exp)
-    
+
     def test_get_value(self):
         """Instantiates object and tests getter for vaiable __value"""
         dc = dice.Dice()
         value = dc.get_value()
         self.assertEqual(0, value)
-    
+
     def test_roll_dice(self):
         """Rolls dice and checks that the number is within bounds"""
         dc = dice.Dice()
@@ -33,7 +33,7 @@ class TestGameClass(unittest.TestCase):
         dc.set_value(4)
         exp = dc.get_value() == 4
         self.assertTrue(exp)
-    
+
     def test_print_face(self):
         """Rolls dice and prints face"""
         dc = dice.Dice()
