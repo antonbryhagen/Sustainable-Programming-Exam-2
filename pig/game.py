@@ -5,11 +5,11 @@
 # import random
 
 import time
-import player
-import dice
-import dice_hand
-import intelligence
-import highscore
+from player import Player
+from dice import Dice
+from dice_hand import Dice_hand
+from intelligence import Intelligence
+from highscore import Highscore
 
 
 class Game:
@@ -17,17 +17,17 @@ class Game:
 
     def __init__(self):
         """Init the object."""
-        self.dc = dice.Dice()
-        self.dh = dice_hand.Dice_hand()
+        self.dc = Dice()
+        self.dh = Dice_hand()
         self.singleplayer = None
-        self.p_1 = player.Player("Temp1")
-        self.p_2 = player.Player("Computer")
+        self.p_1 = Player("Temp1")
+        self.p_2 = Player("Computer")
         self.p_1_turn = True
         self._created_first_player = False
         self.created_players = False
         self._difficulty = 1
-        self.computer = intelligence.Intelligence()
-        self.highscore_handler = highscore.Highscore('pig/highscores.bin')
+        self.computer = Intelligence()
+        self.highscore_handler = Highscore('pig/highscores.bin')
         self.started = False
         self.in_round = False
 
@@ -38,10 +38,10 @@ class Game:
     def player(self, name):
         """Create new player object."""
         if not self._created_first_player:
-            self.p_1 = player.Player(name)
+            self.p_1 = Player(name)
             self._created_first_player = True
         elif not self.singleplayer and self._created_first_player:
-            self.p_2 = player.Player(name)
+            self.p_2 = Player(name)
             self.created_players = True
             self.in_round = True
 

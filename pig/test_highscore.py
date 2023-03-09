@@ -3,8 +3,8 @@
 import unittest
 import os
 
-from pig import player
-from pig import highscore
+from player import Player
+from highscore import Highscore
 
 
 class TestHighscoreClass(unittest.TestCase):
@@ -12,18 +12,18 @@ class TestHighscoreClass(unittest.TestCase):
 
     def setUp(self):
         """Create new highscore file for each test case."""
-        with open('test/highscores.bin', 'wb'):
+        with open('pig/test_highscores.bin', 'wb'):
             pass
 
     def test_init_default_object(self):
         """Instantiate highscore object and check its properties."""
-        res = highscore.Highscore('test/highscores.bin')
-        exp = highscore.Highscore
+        res = Highscore('pig/test_highscores.bin')
+        exp = Highscore
         self.assertIsInstance(res, exp)
 
     def test_get_highscore_empty(self):
         """Get highscores from empty file and check highscore dictionary is empty."""
-        highscore_object = highscore.Highscore('test/highscores.bin')
+        highscore_object = Highscore('pig/test_highscores.bin')
         highscore_object._get_highscores()
         self.assertEqual(highscore_object._highscores, {})
 
@@ -32,8 +32,8 @@ class TestHighscoreClass(unittest.TestCase):
         Update highscore for a new player and get updated highscore, check highscore
         dictionary contains the new player with one game played and one win.
         """
-        highscore_object = highscore.Highscore('test/highscores.bin')
-        player_object = player.Player("Username")
+        highscore_object = Highscore('pig/test_highscores.bin')
+        player_object = Player("Username")
         highscore_object.update_highscore(player_object, True)
         highscore_object._get_highscores()
         self.assertEqual(highscore_object._highscores, {"Username": [1, 1]})
@@ -43,8 +43,8 @@ class TestHighscoreClass(unittest.TestCase):
         Update highscore for a new player and get updated highscore, check highscore
         dictionary contains the new player with one game played and zero win.
         """
-        highscore_object = highscore.Highscore('test/highscores.bin')
-        player_object = player.Player("Username")
+        highscore_object = Highscore('pig/test_highscores.bin')
+        player_object = Player("Username")
         highscore_object.update_highscore(player_object, False)
         highscore_object._get_highscores()
         self.assertEqual(highscore_object._highscores, {"Username": [0, 1]})
@@ -54,8 +54,8 @@ class TestHighscoreClass(unittest.TestCase):
         Update highscore twice for a player and get highscore, check highscore 
         dictionary contains the recurring player with 2 games played and 2 wins
         """
-        highscore_object = highscore.Highscore('test/highscores.bin')
-        player_object = player.Player("Username")
+        highscore_object = Highscore('pig/test_highscores.bin')
+        player_object = Player("Username")
         highscore_object.update_highscore(player_object, True)
         highscore_object.update_highscore(player_object, True)
         highscore_object._get_highscores()
@@ -66,8 +66,8 @@ class TestHighscoreClass(unittest.TestCase):
         Update highscore twice for a player and get highscore, check highscore 
         dictionary contains the recurring player with 2 games played and 1 win
         """
-        highscore_object = highscore.Highscore('test/highscores.bin')
-        player_object = player.Player("Username")
+        highscore_object = Highscore('pig/test_highscores.bin')
+        player_object = Player("Username")
         highscore_object.update_highscore(player_object, True)
         highscore_object.update_highscore(player_object, False)
         highscore_object._get_highscores()
@@ -78,8 +78,8 @@ class TestHighscoreClass(unittest.TestCase):
         Get string representation of highscore object and check that the string
         match expected format and statistics
         """
-        highscore_object = highscore.Highscore('test/highscores.bin')
-        player_object = player.Player("Username")
+        highscore_object = Highscore('pig/test_highscores.bin')
+        player_object = Player("Username")
         highscore_object.update_highscore(player_object, True)
         exp = 'Name: Username, Wins: 1, Games played: 1\n'
         self.assertEqual(highscore_object.__str__(), exp)
@@ -89,8 +89,8 @@ class TestHighscoreClass(unittest.TestCase):
         Update highscore and change username, check that highscore transferred
         to the new name
         """
-        highscore_object = highscore.Highscore('test/highscores.bin')
-        player_object = player.Player("Username")
+        highscore_object = Highscore('pig/test_highscores.bin')
+        player_object = Player("Username")
         highscore_object.update_highscore(player_object, True)
         exp = 'Name: Username, Wins: 1, Games played: 1\n'
         self.assertEqual(highscore_object.__str__(), exp)
@@ -104,9 +104,9 @@ class TestHighscoreClass(unittest.TestCase):
         Update highscore and change username to already existing username, check that
         highscore doesn't transfer to already existing user
         """
-        highscore_object = highscore.Highscore('test/highscores.bin')
-        player_object_1 = player.Player("Username")
-        player_object_2 = player.Player("Name")
+        highscore_object = Highscore('pig/test_highscores.bin')
+        player_object_1 = Player("Username")
+        player_object_2 = Player("Name")
         highscore_object.update_highscore(player_object_1, True)
         highscore_object.update_highscore(player_object_2, True)
         exp = ('Name: Username, Wins: 1, Games played: 1\n'
@@ -118,7 +118,7 @@ class TestHighscoreClass(unittest.TestCase):
 
     def tearDown(self):
         """Remove highscore file after each test case"""
-        os.remove('test/highscores.bin')
+        os.remove('pig/test_highscores.bin')
 
 if __name__ == "__main__":
     unittest.main()
