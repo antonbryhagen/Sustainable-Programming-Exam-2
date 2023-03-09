@@ -1,4 +1,4 @@
-Python development project template
+Python Pig game
 ==========================
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -82,10 +82,10 @@ The example program can be started like this.
 
 ```
 # Execute the main program
-python guess/main.py
+python pig/main.py
 ```
 
-All code is stored below the directory `guess/`.
+All code is stored below the directory `Sustainable-Programming-Exam-2/pig/`.
 
 
 
@@ -198,3 +198,19 @@ More targets
 --------------------------
 
 The Makefile contains more targets, they are however not yet tested on this directory structure.
+
+
+### Run the game
+The game is ran through the console, navigate to the directory Sustainable-Programming-Exam-2
+```
+#Run game from directory
+python pig/main.py
+```
+Then follow the given instructions
+
+### Credits
+Makers:
+Gabriel Thiman
+Anton Bryhagen
+
+### License

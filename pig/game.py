@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Roll a dice"""
+"""Roll a dice."""
 # import random
 
 import time
@@ -51,7 +51,7 @@ class Game:
         self.in_round = True
 
     def roll(self):
-        """Rolls dice and checks if a player has won"""
+        """Roll dice and checks if a player has won."""
         self.dc.roll_dice()
         if self.p_1_turn:
             print("You rolled a:")
@@ -77,7 +77,8 @@ class Game:
                     self.highscore_handler.update_highscore(self.p_1, True)
                     self.in_round = False
                     if not self.singleplayer:
-                        self.highscore_handler.update_highscore(self.p_2, False)
+                        self.highscore_handler. \
+                            update_highscore(self.p_2, False)
             else:
                 if self.p_2.get_score() + self.dh.get_rolled() >= 100:
                     print(f"{self.p_2.get_name()} Win")
@@ -88,7 +89,7 @@ class Game:
                         self.highscore_handler.update_highscore(self.p_2, True)
 
     def hold(self):
-        """Adds score to players total points and changes turn"""
+        """Add score to players total points and changes turn."""
         if self.p_1_turn:
             self.p_1.set_score(self.p_1.get_score() + self.dh.get_rolled())
             print(f"Player {self.p_1.get_name()} holds at:\
@@ -111,7 +112,7 @@ class Game:
             self.p_1_turn = True
 
     def computer_play(self):
-        """Calls AI:s method to play and executes its instructions"""
+        """Call AI:s method to play and executes its instructions."""
         print("Computer playing:")
         while (True):
             if self.p_2.get_score() + self.dh.get_rolled() >= 100:
@@ -141,14 +142,14 @@ class Game:
             print(msg)
 
     def print_menu(self):
-        """Prints menu"""
+        """Print menu."""
         print("""Welocme to the game!
         Type "one" to play against the computer
         Type "two" to play against a friend
         Type "highscore" to view highscores""")
 
     def cheat(self):
-        """Sets the currently playing players score to 100"""
+        """Set the currently playing players score to 100."""
         if self.p_1_turn:
             self.p_1.set_score(100)
             self.roll()
@@ -157,7 +158,7 @@ class Game:
             self.roll()
 
     def restart(self):
-        """Resets points and history"""
+        """Reset points and history."""
         self.p_1.set_score(0)
         self.p_2.set_score(0)
         self.dh.clear_rolled()
@@ -165,5 +166,5 @@ class Game:
         self.p_1_turn = True
 
     def player_won(self):
-        "Asks if player wants to play again"
+        """Ask if player wants to play again."""
         print("Play again? Y/N")

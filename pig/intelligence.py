@@ -1,7 +1,11 @@
+"""Handle computers moves."""
+
+
 class Intelligence:
+    """Intelligence class."""
 
     def play(self, difficulty, hand, opponent_score, our_score):
-        """Decides computers next move"""
+        """Decide computers next move."""
         self.difference = 0
         if difficulty == "1":
             if hand.get_rolled() < 20:
