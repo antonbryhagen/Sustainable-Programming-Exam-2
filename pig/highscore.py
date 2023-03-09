@@ -2,7 +2,7 @@
 
 
 import pickle
-import pig.player as player
+from player import Player
 
 
 class Highscore:
@@ -21,7 +21,7 @@ class Highscore:
             except EOFError:
                 pass
 
-    def update_highscore(self, user: player.Player, won: bool):
+    def update_highscore(self, user: Player, won: bool):
         """Update highscore dictionary and write to highscore file."""
         self._get_highscores()
         # dictionary -> {name: [wins, games_played]}
