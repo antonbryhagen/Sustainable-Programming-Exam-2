@@ -105,11 +105,11 @@ class Shell(cmd.Cmd):
         if self.game.singleplayer:
             if arg <= "3" and arg >= "1":
                 self.game.difficulty(arg)
+                print("Type 'roll' to roll the dice and 'hold' to end your turn")
             else:
                 print("Enter a valid difficulty: 1, 2 or 3")
         else:
             print("Unable to change difficulty.")
-        print("Type 'roll' to roll the dice and 'hold' to end your turn")
 
     def do_roll(self, _):
         """Roll the dice"""
@@ -141,6 +141,7 @@ class Shell(cmd.Cmd):
             print(self.game.highscore_handler)
 
     def do_Y(self, _):
+        """Restarts game from beginning"""
         self.game.restart()
         self.game.singleplayer = None
         self.game._created_first_player = False

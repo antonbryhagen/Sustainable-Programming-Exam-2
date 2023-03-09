@@ -64,10 +64,12 @@ class Game:
                 print("Computer rolled a:")
                 self.dc.print_face()
         if self.dc.get_value() == 1:
+            self.dh.add_history(self.dc.get_value())
             self.dh.clear_rolled()
             self.hold()
         else:
             self.dh.add_rolled(self.dc.get_value())
+            self.dh.add_history(self.dc.get_value())
             if self.p_1_turn:
                 if self.p_1.get_score() + self.dh.get_rolled() >= 100:
                     print(f"{self.p_1.get_name()} Win")
@@ -114,7 +116,6 @@ class Game:
         while (True):
             if self.p_2.get_score() + self.dh.get_rolled() >= 100:
                 break
-            time.sleep(2)
             action = self.computer.play(self._difficulty, self.dh,
                                         self.p_1.get_score(),
                                         self.p_2.get_score())
@@ -125,6 +126,7 @@ class Game:
                 self.p_1_turn = True
             if self.p_1_turn:
                 break
+            time.sleep(2)
 
     def rename(self, current_name, new_name):
         """Rename specified player and transfer highscore."""
@@ -163,4 +165,5 @@ class Game:
         self.p_1_turn = True
 
     def player_won(self):
+        "Asks if player wants to play again"
         print("Play again? Y/N")
