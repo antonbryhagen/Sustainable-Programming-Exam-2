@@ -4,6 +4,7 @@
 """Roll a dice"""
 # import random
 
+import time
 import player
 import dice
 import dice_hand
@@ -59,8 +60,9 @@ class Game:
             print("You rolled a:")
             self.dc.print_face()
         else:
-            print("Computer rolled a:")
-            self.dc.print_face()
+            if self.p_2.get_score() + self.dh.get_rolled() < 100:
+                print("Computer rolled a:")
+                self.dc.print_face()
         if self.dc.get_value() == 1:
             self.dh.clear_rolled()
             self.hold()
@@ -110,6 +112,9 @@ class Game:
         """Calls AI:s method to play and executes its instructions"""
         print("Computer playing:")
         while (True):
+            if self.p_2.get_score() + self.dh.get_rolled() >= 100:
+                break
+            time.sleep(2)
             action = self.computer.play(self._difficulty, self.dh,
                                         self.p_1.get_score(),
                                         self.p_2.get_score())

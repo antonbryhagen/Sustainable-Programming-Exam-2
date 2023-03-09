@@ -34,8 +34,86 @@ class TestGameClass(unittest.TestCase):
         exp = dc.get_value() == 4
         self.assertTrue(exp)
 
-    def test_print_face(self):
+    def test_print_face_1(self):
         """Rolls dice and prints face"""
         dc = dice.Dice()
-        dc.roll_dice()
+        dc.set_value(1)
         dc.print_face()
+        exp = """
+                 ---------
+                |         |
+                |    *    |
+                |         |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
+    
+    def test_print_face_2(self):
+        """Rolls dice and prints face"""
+        dc = dice.Dice()
+        dc.set_value(2)
+        dc.print_face()
+        exp = """
+                 ---------
+                |  *      |
+                |         |
+                |      *  |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
+    
+    def test_print_face_3(self):
+        """Rolls dice and prints face"""
+        dc = dice.Dice()
+        dc.set_value(3)
+        dc.print_face()
+        exp = """
+                 ---------
+                |  *      |
+                |    *    |
+                |      *  |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
+    
+    def test_print_face_4(self):
+        """Rolls dice and prints face"""
+        dc = dice.Dice()
+        dc.set_value(4)
+        dc.print_face()
+        exp = """
+                 ---------
+                |  *   *  |
+                |         |
+                |  *   *  |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
+    
+    def test_print_face_5(self):
+        """Rolls dice and prints face"""
+        dc = dice.Dice()
+        dc.set_value(5)
+        dc.print_face()
+        exp = """
+                 ---------
+                |  *   *  |
+                |    *    |
+                |  *   *  |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
+
+    def test_print_face_6(self):
+        """Rolls dice and prints face"""
+        dc = dice.Dice()
+        dc.set_value(6)
+        dc.print_face()
+        exp = """
+                 ---------
+                |  *   *  |
+                |  *   *  |
+                |  *   *  |
+                 ---------
+                """
+        self.assertEqual(dc.output, exp)
