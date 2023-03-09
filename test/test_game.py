@@ -4,7 +4,7 @@
 """Unit testing."""
 
 import unittest
-from pig.game import Game
+from pig import game
 
 
 class TestGameClass(unittest.TestCase):
@@ -12,8 +12,8 @@ class TestGameClass(unittest.TestCase):
 
     def test_init_default_object(self):
         """Instantiate an object and check its properties."""
-        res = Game()
-        exp = Game
+        res = game.Game()
+        exp = game.Game
         self.assertIsInstance(res, exp)
 
     # def test_start_the_game(self):

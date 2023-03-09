@@ -1,7 +1,7 @@
 """Unit testing"""
 
 import unittest
-from pig.histogram import Histogram
+from pig import histogram
 
 
 class TestHistogram(unittest.TestCase):
@@ -9,8 +9,8 @@ class TestHistogram(unittest.TestCase):
 
     def test_init_default_object(self):
         """Instantiate histogram object and check its properties."""
-        res = Histogram()
-        exp = Histogram
+        res = histogram.Histogram()
+        exp = histogram.Histogram
         self.assertIsInstance(res, exp)
         percentage_dict_res = res._percentage_dict
         rounded_percentage_dict_res = res._rounded_percentage_dict
@@ -23,7 +23,7 @@ class TestHistogram(unittest.TestCase):
         check that dictionary with calculated values match with dictionary with 
         correct percentages
         """
-        histogram_object = Histogram()
+        histogram_object = histogram.Histogram()
         dice_faces = [1, 2, 2, 3, 4, 4, 5, 5, 6, 6, 6]
         histogram_object._calculate_percentage(dice_faces)
         expected_percentage_dict = {1:0.09090909090909091, 
@@ -42,7 +42,7 @@ class TestHistogram(unittest.TestCase):
         Create histogram object and get histogram from dice face history, check
         that returned string is matching expected histogram
         """
-        histogram_object = Histogram()
+        histogram_object = histogram.Histogram()
         dice_faces = [1, 2, 2, 3, 4, 4, 5, 5, 6, 6, 6]
         res = histogram_object.get_histogram(dice_faces)
         exp = (" 90-100% |"
