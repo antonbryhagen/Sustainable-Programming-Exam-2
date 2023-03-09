@@ -9,10 +9,10 @@ class Dice_hand:
 
     def add_history(self, value):
         self.__history.append(value)
-    
+
     def get_history(self):
         return self.__history
-    
+
     def clear_history(self):
         self.__history.clear()
 
@@ -25,6 +25,3 @@ class Dice_hand:
     def print_hand(self):
         print("Hand: ")
         print(self.__rolled)
-
-    def get_score(self):
-        return self.__rolled
