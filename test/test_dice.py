@@ -117,3 +117,6 @@ class TestGameClass(unittest.TestCase):
                  ---------
                 """
         self.assertEqual(dc.output, exp)
+
+if __name__ == "__main__":
+    unittest.main()

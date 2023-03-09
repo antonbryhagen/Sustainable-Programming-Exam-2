@@ -84,6 +84,38 @@ class TestHighscoreClass(unittest.TestCase):
         exp = 'Name: Username, Wins: 1, Games played: 1\n'
         self.assertEqual(highscore_object.__str__(), exp)
 
+    def test_update_name(self):
+        """
+        Update highscore and change username, check that highscore transferred
+        to the new name
+        """
+        highscore_object = highscore.Highscore('test/highscores.bin')
+        player_object = player.Player("Username")
+        highscore_object.update_highscore(player_object, True)
+        exp = 'Name: Username, Wins: 1, Games played: 1\n'
+        self.assertEqual(highscore_object.__str__(), exp)
+        player_object.set_name("Name")
+        highscore_object.update_name("Username", "Name")
+        exp = 'Name: Name, Wins: 1, Games played: 1\n'
+        self.assertEqual(highscore_object.__str__(), exp)
+    
+    def test_update_name_error(self):
+        """
+        Update highscore and change username to already existing username, check that
+        highscore doesn't transfer to already existing user
+        """
+        highscore_object = highscore.Highscore('test/highscores.bin')
+        player_object_1 = player.Player("Username")
+        player_object_2 = player.Player("Name")
+        highscore_object.update_highscore(player_object_1, True)
+        highscore_object.update_highscore(player_object_2, True)
+        exp = ('Name: Username, Wins: 1, Games played: 1\n'
+               'Name: Name, Wins: 1, Games played: 1\n')
+        self.assertEqual(highscore_object.__str__(), exp)
+        player_object_1.set_name("Name")
+        highscore_object.update_name("Username", "Name")
+        self.assertEqual(highscore_object.__str__(), exp)
+
     def tearDown(self):
         """Remove highscore file after each test case"""
         os.remove('test/highscores.bin')

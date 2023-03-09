@@ -52,3 +52,6 @@ class TestGameClass(unittest.TestCase):
         dh.add_rolled(5)
         value = dh.get_rolled()
         self.assertEqual(value, 5)
+
+if __name__ == "__main__":
+    unittest.main()
