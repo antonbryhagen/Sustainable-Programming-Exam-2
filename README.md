@@ -22,6 +22,9 @@ A template for a Python development project.
     + [Credits](#credits)
     + [License](#license)
 
+
+About the project
+--------------------------
 This is a school project designed to test us in our ability to write python code using object oriented programming as well as using unittesting and well as makefiles. We were given the choice of making the game dice game pig or card game war. We chose pig due to it seeming like a more interesting game to design.
 
 This project lets you play pig both against a friend locally or against an ai through the console.
