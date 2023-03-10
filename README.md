@@ -6,6 +6,11 @@ Python Pig game
 A template for a Python development project.
 
 - [Python Pig game](#python-pig-game)
+  * [About the project](#about-the-project)
+  * [Install and play the game](#install-and-play-the-game)
+    + [Open bash terimal](#open-bash-terimal)
+    + [Installation](#installation)
+    + [Start the game](#start-the-game)
   * [Get going](#get-going)
     + [Check version of Python](#check-version-of-python)
     + [Python virtual environment](#python-virtual-environment)
@@ -18,9 +23,7 @@ A template for a Python development project.
   * [Optional targets](#optional-targets)
     + [Codestyle with black](#codestyle-with-black)
   * [More targets](#more-targets)
-    + [Run the game](#run-the-game)
     + [Credits](#credits)
-    + [License](#license)
 
 
 About the project
