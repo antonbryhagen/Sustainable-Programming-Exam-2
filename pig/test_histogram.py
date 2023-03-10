@@ -46,18 +46,18 @@ class TestHistogram(unittest.TestCase):
         res = histogram_object.get_histogram(dice_faces)
         print(res)
         exp = (
-            "100% |       \n"
-            " 90% |       \n"
-            " 80% |       \n"
-            " 70% |       \n"
-            " 60% |       \n"
-            " 50% |       \n"
-            " 40% |       \n"
-            " 30% |      █\n"
-            " 20% |  █ ███\n"
-            " 10% | ██████\n"
+            ">=100% |       \n"
+            ">= 90% |       \n"
+            ">= 80% |       \n"
+            ">= 70% |       \n"
+            ">= 60% |       \n"
+            ">= 50% |       \n"
+            ">= 40% |       \n"
+            ">= 30% |      █\n"
+            ">= 20% |  █ ███\n"
+            ">= 10% | ██████\n"
             "-----------------------\n"
-            "Face | 123456"
+            "  Face | 123456"
         )
         self.assertEqual(res, exp)
 
