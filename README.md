@@ -34,6 +34,38 @@ The program is made using object oriented programming in python.
 The game is ran through commands where the running of one allows the next to be ran. These commands then run methods in the game class, which instantiates and handles all the objects in the game. The games ai opponent is handled by the intelligence class. The class works by recieving the previous rolls of the current turn along with both players total points as well as the difficulty chosen by the player. Based on this it will either chose to roll the dice or hold. The chosen difficulty decides what strategy the ai will adopt, where the higher the difficulty the closer to the optimal strategy the computer will play.
 
 
+Install and play the game
+--------------------------
+This is how you install the game and play it if you don't intend on further developing it
+
+### Open bash terimal
+Start by opening a bash terminal in the root of the project
+
+### Installation
+Run the following commands in your bash terminal
+```
+# Create virtual environment
+make venv
+```
+Wait for the venv to install, after it is done, activate it
+```
+# Activate virtual environment (Windwos)
+. .venv/Scripts/activate
+# Activate virtual environment (Linux/Mac)
+. .venv/bin/activate
+```
+```
+# Install dependencies
+make install
+```
+
+### Start the game
+Run the following command in your bash terminal to start the game
+```
+# Start the game
+make run-game
+```
+
 
 Get going
 --------------------------
