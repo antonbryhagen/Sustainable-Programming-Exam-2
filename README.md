@@ -3,7 +3,6 @@ Python Pig game
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-A template for a Python development project.
 
 - [Python Pig game](#python-pig-game)
   * [About the project](#about-the-project)
