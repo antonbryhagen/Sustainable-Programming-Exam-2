@@ -10,6 +10,7 @@ from dice import Dice
 from dice_hand import DiceHand
 from intelligence import Intelligence
 from highscore import Highscore
+from histogram import Histogram
 
 
 class Game:
@@ -28,6 +29,7 @@ class Game:
         self._difficulty = 1
         self.computer = Intelligence()
         self.highscore_handler = Highscore("pig/highscores.bin")
+        self.histogram_handler = Histogram()
         self.started = False
         self.in_round = False
         self.game_won = False
@@ -75,6 +77,13 @@ class Game:
             if self.p_1_turn:
                 if self.p_1.get_score() + self.d_h.get_rolled() >= 100:
                     print(f"{self.p_1.get_name()} Win")
+                    all_faces = True
+                    for x in range(1, 7):
+                        if x not in self.dh.get_history():
+                            all_faces = False
+                    if all_faces:
+                        print(self.histogram_handler.get_histogram(
+                            self.dh.get_history()))
                     self.game_won = True
                     self.player_won()
                     self.highscore_handler.update_highscore(self.p_1, True)
@@ -85,6 +94,13 @@ class Game:
             else:
                 if self.p_2.get_score() + self.d_h.get_rolled() >= 100:
                     print(f"{self.p_2.get_name()} Win")
+                    all_faces = True
+                    for x in range(1, 7):
+                        if x not in self.dh.get_history():
+                            all_faces = False
+                    if all_faces:
+                        print(self.histogram_handler.get_histogram(
+                            self.dh.get_history()))
                     self.game_won = True
                     self.player_won()
                     self.highscore_handler.update_highscore(self.p_1, False)
