@@ -3,6 +3,5 @@
 __pycache__
 htmlcov/
 *.pyc
-dice/doc
-guess/doc
-.vscode/settings.json
+
+
