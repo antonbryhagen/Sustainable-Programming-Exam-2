@@ -11,7 +11,7 @@ class Histogram:
         self._percentage_dict = {}
         self._rounded_percentage_dict = {}
 
-    def _calculate_percentage(self, dice_history):
+    def calculate_percentage(self, dice_history):
         """Calculate ocurrence of dice face in percentage."""
         self._percentage_dict = {
             face: dice_history.count(face) / len(dice_history) for face in
@@ -22,9 +22,17 @@ class Histogram:
                 self._percentage_dict[key] * 10
             )
 
+    def get_calculated_percentage(self):
+        """Get percentage list."""
+        return self._percentage_dict
+
+    def get_calculated_rounded_percentage(self):
+        """Get rounded percentage list."""
+        return self._rounded_percentage_dict
+
     def get_histogram(self, dice_history):
         """Get histogram as a formatted string."""
-        self._calculate_percentage(dice_history)
+        self.calculate_percentage(dice_history)
         chart = ""
         for i in range(10, 0, -1):
             row = ""
