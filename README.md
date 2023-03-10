@@ -22,7 +22,7 @@ Python Pig game
   * [Optional targets](#optional-targets)
     + [Codestyle with black](#codestyle-with-black)
   * [More targets](#more-targets)
-    + [Credits](#credits)
+  * [Credits](#credits)
 
 
 About the project
@@ -253,7 +253,8 @@ More targets
 The Makefile contains more targets, they are however not yet tested on this directory structure.
 
 
-### Credits
+Credits
+--------------------------
 Makers:
 Gabriel Thiman 
 Github: https://github.com/GheTee
