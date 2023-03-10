@@ -254,18 +254,18 @@ The Makefile contains more targets, they are however not yet tested on this dire
 ### Run the game
 The game is ran through the console, navigate to the directory Sustainable-Programming-Exam-2
 ```
-#Run game from directory
+# Run game from directory
 python pig/main.py
 ```
 Then follow the given instructions
 
 ### Credits
 Makers:
-Gabriel Thiman
+Gabriel Thiman 
 Github: https://github.com/GheTee
 
-Anton Bryhagen
-github: https://github.com/antonbryhagen
+Anton Bryhagen 
+Github: https://github.com/antonbryhagen
 
 ### License
 MIT License
