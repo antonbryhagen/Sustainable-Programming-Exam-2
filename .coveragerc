@@ -2,10 +2,13 @@
 omit =
     test_*.py
     test/*
+    pig/test*.py
     */__init__.py
 
 [report]
 omit =
     test_*.py
+    pig/test*.py
     test/*
     */__init__.py
+    

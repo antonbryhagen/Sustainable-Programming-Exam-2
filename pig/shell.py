@@ -9,7 +9,7 @@ You can read about the cmd module in the docs:
 """
 
 import cmd
-import game
+from game import Game
 
 
 class Shell(cmd.Cmd):
@@ -24,21 +24,21 @@ class Shell(cmd.Cmd):
     def __init__(self):
         """Init the object."""
         super().__init__()
-        self.game = game.Game()
+        self.game = Game()
 
     def do_rules(self, _):
         """Print the rules of the game."""
-        rules = (
-            """This is a game of pig.
+        rules = """This is a game of pig.
 
-    Take turns rolling a dice.
+            Take turns rolling a dice.
 
-    You can roll as many times as you want each turn or choose to hold.
+            You can roll as many times as you want each turn or choose to hold.
 
-    If you roll a "1" your turn ends and you loose all points for that turn.
 
-    First to 100 points win."""
-        )
+            If you roll a "1" your turn ends and you loose all points for that
+            turn.
+
+            First to 100 points win."""
         print(rules)
 
     def do_start(self, _):
@@ -87,18 +87,20 @@ class Shell(cmd.Cmd):
 
     def do_player(self, arg):
         """Enter a player name."""
-        if ((self.game.singleplayer and not self.game._created_first_player) or
-           (not self.game.singleplayer and not self.game.created_players)):
-                self.game.player(arg)
-                print(f'Welcome {arg}')
-                if self.game.singleplayer:
-                    print("Type 'difficulty 1, 2 or 3' to select difficulty")
-                if not self.game.singleplayer and not \
-                   self.game.created_players:
-                    print("Type 'player name' to set second players username")
-                if not self.game.singleplayer and self.game.created_players:
-                    print("Type 'roll' to roll the dice\
-         and 'hold' to end your turn")
+        if (self.game.singleplayer and not
+            self.game._created_first_player) or (
+            not self.game.singleplayer and not
+            self.game.created_players
+        ):
+            self.game.player(arg)
+            print(f"Welcome {arg}")
+            if self.game.singleplayer:
+                print("Type 'difficulty 1, 2 or 3' to select difficulty")
+            if not self.game.singleplayer and not self.game.created_players:
+                print("Type 'player name' to set second players username")
+            if not self.game.singleplayer and self.game.created_players:
+                print("Type 'roll' to roll the dice and 'hold' to end your "
+                      "turn")
         else:
             print("Already created player(s).")
 
@@ -107,8 +109,8 @@ class Shell(cmd.Cmd):
         if self.game.singleplayer:
             if arg <= "3" and arg >= "1":
                 self.game.difficulty(arg)
-                print("Type 'roll' to roll the dice and\
-         'hold' to end your turn")
+                print("Type 'roll' to roll the dice and 'hold' to end your "
+                      "turn")
             else:
                 print("Enter a valid difficulty: 1, 2 or 3")
         else:
@@ -130,8 +132,9 @@ class Shell(cmd.Cmd):
 
     def do_rename(self, arg1):
         """Rename specified player."""
-        if ((self.game._created_first_player or self.game.created_players)
-           and not self.game.in_round):
+        if (
+            self.game._created_first_player or self.game.created_players
+        ) and not self.game.in_round:
             arg2 = arg1.split()[1]
             arg1 = arg1.split()[0]
             self.game.rename(arg1, arg2)

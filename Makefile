@@ -40,6 +40,13 @@ installed:
 
 
 # ---------------------------------------------------------
+# Run the game after installation.
+#
+run-game:
+	$(PYTHON) pig/main.py
+
+
+# ---------------------------------------------------------
 # Cleanup generated and installed files.
 #
 clean:
@@ -76,7 +83,7 @@ lint: flake8 pylint
 #
 black:
 	@$(call MESSAGE,$@)
-	 $(PYTHON) -m black pig/ test/
+	 $(PYTHON) -m black pig/
 
 codestyle: black
 
@@ -84,18 +91,27 @@ codestyle: black
 # ---------------------------------------------------------
 # Work with unit test and code coverage.
 #
+# unittest:
+# 	@$(call MESSAGE,$@)
+# 	 $(PYTHON) -m unittest discover
+
+# coverage:
+# 	@$(call MESSAGE,$@)
+# 	coverage run -m unittest discover
+# 	coverage html
+# 	coverage report -m
+
 unittest:
 	@$(call MESSAGE,$@)
-	 $(PYTHON) -m unittest discover
+	 $(PYTHON) -m unittest discover -s pig -p 'test*.py'
 
 coverage:
 	@$(call MESSAGE,$@)
-	coverage run -m unittest discover
+	coverage run -m unittest discover -s pig -p 'test*.py'
 	coverage html
-	coverage report -m
+	coverage report
 
 test: lint coverage
-
 
 # ---------------------------------------------------------
 # Work with generating documentation.

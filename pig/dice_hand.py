@@ -2,7 +2,7 @@
 
 
 class Dice_hand:
-    """Dicehand class."""
+    """Dice_hand class."""
 
     def __init__(self):
         """Init the object."""
