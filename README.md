@@ -22,7 +22,7 @@ A template for a Python development project.
     + [Credits](#credits)
     + [License](#license)
 
-This is a school project designed to test us in our ability to write python code using object oriented programming as well as using unittesting and well as makefiles. We were given the choice of makeing the game dice game pig or card game war. We chose pig due to it seeming like a more interesting game to design.
+This is a school project designed to test us in our ability to write python code using object oriented programming as well as using unittesting and well as makefiles. We were given the choice of making the game dice game pig or card game war. We chose pig due to it seeming like a more interesting game to design.
 
 This project lets you play pig both against a friend locally or against an ai through the console.
 
@@ -101,14 +101,14 @@ Read more on [Python PIP](https://pypi.org/project/pip/).
 
 ### Run the code
 
-The example program can be started like this.
+The program can be started like this.
 
 ```
 # Execute the main program
 python pig/main.py
 ```
 
-All code is stored below the directory `Sustainable-Programming-Exam-2/`.
+All code is stored below the directory `Sustainable-Programming-Exam-2/pig`.
 
 
 
@@ -125,7 +125,7 @@ make pylint
 make lint
 ```
 
-You might need to update the Makefile if you change the name of the source directory currently named `Sustainable-Programming-Exam-2/`.
+You might need to update the Makefile if you change the name of the source directory.
 
 Read more on:
 
@@ -136,7 +136,7 @@ Read more on:
 
 ### Run the unittests
 
-You can run the unittests like this. The testfiles are stored in the `test/` directory.
+You can run the unittests like this. The testfiles are stored in the `pig/` directory.
 
 ```
 # Run unttests without coverage
@@ -170,14 +170,7 @@ You can run all tests from a testfile.
 
 ```
 # Run a testfile
-python -m unittest test.test_game
-```
-
-You can also run a single testcase from a file.
-
-```
-# Run a test method, in a class, in a testfile
-python -m unittest test.test_game.TestGameClass.test_init_default_object
+python -m unittest discover -s pig -p 'test_game.py'
 ```
 
 
@@ -234,7 +227,7 @@ Then follow the given instructions
 ### Credits
 Makers:
 Gabriel Thiman
-hithub: https://github.com/GheTee
+Github: https://github.com/GheTee
 
 Anton Bryhagen
 github: https://github.com/antonbryhagen
@@ -242,7 +235,7 @@ github: https://github.com/antonbryhagen
 ### License
 MIT License
 
-Copyright (c) [year] [fullname]
+Copyright (c) 2023 Anton Bryhagen(anton.bryhagen0175@stud.hkr.se) and Gabriel Thiman(gabriel.thiman0007@stud.hkr.se)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
