@@ -26,13 +26,16 @@ class Game:
         self.p_1_turn = True
         self._created_first_player = False
         self.created_players = False
-        self._difficulty = 1
+        self.diff = 1
         self.computer = Intelligence()
         self.highscore_handler = Highscore("pig/highscores.bin")
         self.histogram_handler = Histogram()
         self.started = False
         self.in_round = False
         self.game_won = False
+        self.action = ""
+        self.message = ""
+        self.victory_message = ""
 
     def player_amount(self, one_player):
         """Set the player amount."""
@@ -50,8 +53,12 @@ class Game:
 
     def difficulty(self, diff):
         """Set computer difficulty."""
-        self._difficulty = diff
+        self.diff = diff
         self.in_round = True
+
+    def get_difficulty(self):
+        """Get the current difficulty."""
+        return self.diff
 
     def roll(self):
         """Roll dice and checks if a player has won."""
@@ -146,11 +153,11 @@ class Game:
             time.sleep(1.5)
             if self.p_2.get_score() + self.d_h.get_rolled() >= 100:
                 break
-            action = self.computer.play(
-                self._difficulty, self.d_h, self.p_1.get_score(),
+            self.action = self.computer.play(
+                self.diff, self.d_h, self.p_1.get_score(),
                 self.p_2.get_score()
             )
-            if action == "roll":
+            if self.action == "roll":
                 self.roll()
             else:
                 self.hold()
@@ -172,12 +179,11 @@ class Game:
 
     def print_menu(self):
         """Print menu."""
-        print(
-            """Welcome to the game!
+        self.message = """Welcome to the game!
         Type "one" to play against the computer
         Type "two" to play against a friend
         Type "highscore" to view highscores"""
-        )
+        print(self.message)
 
     def cheat(self):
         """Set the currently playing players score to 100."""
@@ -200,4 +206,5 @@ class Game:
 
     def player_won(self):
         """Ask if player wants to play again."""
-        print("Play again? y/n")
+        self.victory_message = "Play again? y/n"
+        print(self.victory_message)
