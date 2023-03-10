@@ -39,8 +39,8 @@ class TestHighscoreClass(unittest.TestCase):
         player_object = Player("Username")
         highscore_object.update_highscore(player_object, True)
         highscore_object.get_highscores()
-        self.assertEqual(highscore_object.get_highscore_dict(),
-                         {"Username": [1, 1]})
+        self.assertEqual(highscore_object.get_highscore_dict(), {"Username":
+                                                                 [1, 1]})
 
     def test_get__and_update_highscore_new_player_loose(self):
         """Update highscore for new player, check highscore is added(L)."""
@@ -48,8 +48,8 @@ class TestHighscoreClass(unittest.TestCase):
         player_object = Player("Username")
         highscore_object.update_highscore(player_object, False)
         highscore_object.get_highscores()
-        self.assertEqual(highscore_object.get_highscore_dict(),
-                         {"Username": [0, 1]})
+        self.assertEqual(highscore_object.get_highscore_dict(), {"Username":
+                                                                 [0, 1]})
 
     def test_update_highscore(self):
         """Update highscore twice for player, check highscores are added(W)."""
@@ -58,8 +58,8 @@ class TestHighscoreClass(unittest.TestCase):
         highscore_object.update_highscore(player_object, True)
         highscore_object.update_highscore(player_object, True)
         highscore_object.get_highscores()
-        self.assertEqual(highscore_object.get_highscore_dict(),
-                         {"Username": [2, 2]})
+        self.assertEqual(highscore_object.get_highscore_dict(), {"Username":
+                                                                 [2, 2]})
 
     def test_update_highscore_lost(self):
         """Update highscore twice for player, check highscores are added(L)."""
@@ -68,8 +68,8 @@ class TestHighscoreClass(unittest.TestCase):
         highscore_object.update_highscore(player_object, True)
         highscore_object.update_highscore(player_object, False)
         highscore_object.get_highscores()
-        self.assertEqual(highscore_object.get_highscore_dict(),
-                         {"Username": [1, 2]})
+        self.assertEqual(highscore_object.get_highscore_dict(), {"Username":
+                                                                 [1, 2]})
 
     def test_str(self):
         """Get highscore as string, check it matches expected format&stats."""

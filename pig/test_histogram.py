@@ -37,7 +37,7 @@ class TestHistogram(unittest.TestCase):
         )
         self.assertDictEqual(
             histogram_object.get_calculated_rounded_percentage(),
-            expected_rounded_percentage_dict
+            expected_rounded_percentage_dict,
         )
 
     def test_get_histogram(self):

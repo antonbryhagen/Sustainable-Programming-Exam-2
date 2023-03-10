@@ -81,8 +81,8 @@ class Game:
             print("You rolled a:")
             self.d_c.print_face()
         else:
-            if self.p_2.get_score() + self.d_h.get_rolled() < 100 and\
-             not self.game_won:
+            if (self.p_2.get_score() + self.d_h.get_rolled() < 100
+                    and not self.game_won):
                 print("Computer rolled a:")
                 self.d_c.print_face()
         if self.d_c.get_value() == 1 and not self.game_won:
@@ -96,8 +96,10 @@ class Game:
                 if self.p_1.get_score() + self.d_h.get_rolled() >= 100:
                     print(f"{self.p_1.get_name()} Win")
                     if self.all_faces():
-                        print(self.histogram_handler.get_histogram(
-                            self.d_h.get_history()))
+                        print(
+                            self.histogram_handler.get_histogram(
+                                self.d_h.get_history())
+                        )
                     self.game_won = True
                     self.player_won()
                     self.highscore_handler.update_highscore(self.p_1, True)
@@ -109,8 +111,10 @@ class Game:
                 if self.p_2.get_score() + self.d_h.get_rolled() >= 100:
                     print(f"{self.p_2.get_name()} Win")
                     if self.all_faces():
-                        print(self.histogram_handler.get_histogram(
-                            self.d_h.get_history()))
+                        print(
+                            self.histogram_handler.get_histogram(
+                                self.d_h.get_history())
+                        )
                     self.game_won = True
                     self.player_won()
                     self.highscore_handler.update_highscore(self.p_1, False)
@@ -157,8 +161,7 @@ class Game:
             if self.p_2.get_score() + self.d_h.get_rolled() >= 100:
                 break
             self.action = self.computer.play(
-                self.diff, self.d_h, self.p_1.get_score(),
-                self.p_2.get_score()
+                self.diff, self.d_h, self.p_1.get_score(), self.p_2.get_score()
             )
             if self.action == "roll":
                 self.roll()

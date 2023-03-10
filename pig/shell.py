@@ -87,10 +87,8 @@ class Shell(cmd.Cmd):
 
     def do_player(self, arg):
         """Enter a player name."""
-        if (self.game.singleplayer and not
-            self.game.created_first_player) or (
-            not self.game.singleplayer and not
-            self.game.created_players
+        if (self.game.singleplayer and not self.game.created_first_player) or (
+            not self.game.singleplayer and not self.game.created_players
         ):
             if not arg:
                 print("Missing argument, try player TestUser")
