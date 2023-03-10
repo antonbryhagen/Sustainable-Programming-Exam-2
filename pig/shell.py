@@ -24,7 +24,7 @@ class Shell(cmd.Cmd):
     def __init__(self):
         """Init the object."""
         super().__init__()
-        self.game = Game()
+        self.game = Game("pig/highscores.bin")
 
     def do_rules(self, _):
         """Print the rules of the game."""

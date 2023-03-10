@@ -16,7 +16,7 @@ from histogram import Histogram
 class Game:
     """Game class."""
 
-    def __init__(self):
+    def __init__(self, path):
         """Init the object."""
         self.d_c = Dice()
         self.d_h = DiceHand()
@@ -28,7 +28,7 @@ class Game:
         self.created_players = False
         self.diff = 1
         self.computer = Intelligence()
-        self.highscore_handler = Highscore("pig/highscores.bin")
+        self.highscore_handler = Highscore(path)
         self.histogram_handler = Histogram()
         self.started = False
         self.in_round = False
