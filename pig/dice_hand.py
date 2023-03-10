@@ -1,4 +1,4 @@
-"""Manage dice rolls."""
+"""Handles current hand."""
 
 
 class Dice_hand:

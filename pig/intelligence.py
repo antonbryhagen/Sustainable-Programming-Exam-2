@@ -1,4 +1,4 @@
-"""Manage intelligence."""
+"""Handle computers moves."""
 
 
 class Intelligence:

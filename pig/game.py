@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 """Roll a dice, play the game."""
 
 import time
@@ -152,7 +153,7 @@ class Game:
     def print_menu(self):
         """Print menu."""
         print(
-            """Welocme to the game!
+            """Welcome to the game!
         Type "one" to play against the computer
         Type "two" to play against a friend
         Type "highscore" to view highscores"""

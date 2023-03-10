@@ -34,6 +34,7 @@ class Shell(cmd.Cmd):
 
             You can roll as many times as you want each turn or choose to hold.
 
+
             If you roll a "1" your turn ends and you loose all points for that
             turn.
 
@@ -49,7 +50,7 @@ class Shell(cmd.Cmd):
             print("Already started the game.")
 
     def do_cheat(self, _):
-        """Cheats."""
+        """Cheat."""
         if self.game.in_round:
             print("You cheated!")
             self.game.cheat()
@@ -57,7 +58,7 @@ class Shell(cmd.Cmd):
             print("Currently not playing.")
 
     def do_restart(self, _):
-        """Whipes player points and starts game from beginning."""
+        """Whipe player points and starts game from beginning."""
         if self.game.in_round:
             print("Resetting game")
             self.game.restart()
@@ -123,7 +124,7 @@ class Shell(cmd.Cmd):
             print("Currently not playing.")
 
     def do_hold(self, _):
-        """Do a guess of a number."""
+        """Hold current hand."""
         if self.game.in_round:
             self.game.hold()
         else:

@@ -1,4 +1,4 @@
-"""Game dice."""
+"""Manage dice."""
 
 import random
 
@@ -22,7 +22,7 @@ class Dice:
         self.__value = random.randrange(self.__lowerValue, self.__higherValue)
 
     def get_higher_value(self):
-        """Retun maximum posssible result of roll."""
+        """Return maximum posssible result of roll."""
         return self.__higherValue
 
     def get_lower_value(self):
