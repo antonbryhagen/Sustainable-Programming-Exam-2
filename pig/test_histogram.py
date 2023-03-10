@@ -37,23 +37,28 @@ class TestHistogram(unittest.TestCase):
         self.assertDictEqual(histogram_object._rounded_percentage_dict, 
                              expected_rounded_percentage_dict)
 
-    # def test_get_histogram(self):
-    #     """
-    #     Create histogram object and get histogram from dice face history, check
-    #     that returned string is matching expected histogram
-    #     """
-    #     histogram_object = Histogram()
-    #     dice_faces = [1, 2, 2, 3, 4, 4, 5, 5, 6, 6, 6]
-    #     res = histogram_object.get_histogram(dice_faces)
-    #     exp = (" 90-100% |"
-    #            " 80- 90% |"
-    #            " 30- 40% |"
-    #            " 20- 30% |      █"
-    #            " 10- 20% |  █ ███"
-    #            "  0- 10% | ██████"
-    #            "-----------------------"
-    #            "    Face | 123456")
-    #     self.assertEqual(res, exp)
+    def test_get_histogram(self):
+        """
+        Create histogram object and get histogram from dice face history, check
+        that returned string is matching expected histogram
+        """
+        histogram_object = Histogram()
+        dice_faces = [1, 2, 2, 3, 4, 4, 5, 5, 6, 6, 6]
+        res = histogram_object.get_histogram(dice_faces)
+        print(res)
+        exp = ( "100% |       \n"
+                " 90% |       \n"
+                " 80% |       \n"
+                " 70% |       \n"
+                " 60% |       \n"
+                " 50% |       \n"
+                " 40% |       \n"
+                " 30% |      █\n"
+                " 20% |  █ ███\n"
+                " 10% | ██████\n"
+                "-----------------------\n"
+                "Face | 123456")
+        self.assertEqual(res, exp)
 
 if __name__ == "__main__":
     unittest.main()
