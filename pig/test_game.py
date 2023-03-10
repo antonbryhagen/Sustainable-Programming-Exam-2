@@ -100,10 +100,13 @@ class TestGameClass(unittest.TestCase):
         """Print menu and verify message."""
         game_object = Game("pig/test_highscores.bin")
         game_object.print_menu()
-        self.assertEqual(game_object.message, """Welcome to the game!
+        self.assertEqual(
+            game_object.message,
+            """Welcome to the game!
         Type "one" to play against the computer
         Type "two" to play against a friend
-        Type "highscore" to view highscores""")
+        Type "highscore" to view highscores""",
+        )
 
     def test_cheat(self):
         """Cheat and verify score."""

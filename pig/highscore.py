@@ -48,8 +48,8 @@ class Highscore:
     def update_name(self, current_name, new_name):
         """Load highscores and replace old name with new name."""
         self.get_highscores()
-        if (current_name in self._highscores) and (new_name not in
-                                                   self._highscores):
+        if (current_name in self._highscores) and (new_name
+                                                   not in self._highscores):
             highscore = self._highscores[current_name]
             del self._highscores[current_name]
             self._highscores[new_name] = highscore

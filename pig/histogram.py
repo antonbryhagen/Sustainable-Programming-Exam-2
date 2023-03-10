@@ -14,8 +14,8 @@ class Histogram:
     def calculate_percentage(self, dice_history):
         """Calculate ocurrence of dice face in percentage."""
         self._percentage_dict = {
-            face: dice_history.count(face) / len(dice_history) for face in
-            dice_history
+            face: dice_history.count(face) / len(dice_history)
+            for face in dice_history
         }
         for key in self._percentage_dict.keys():
             self._rounded_percentage_dict[key] = math.ceil(
