@@ -40,6 +40,13 @@ installed:
 
 
 # ---------------------------------------------------------
+# Run the game after installation.
+#
+run-game:
+	$(PYTHON) pig/main.py
+
+
+# ---------------------------------------------------------
 # Cleanup generated and installed files.
 #
 clean:
