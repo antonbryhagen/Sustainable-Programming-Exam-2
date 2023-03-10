@@ -12,8 +12,8 @@ class TestHistogram(unittest.TestCase):
         res = Histogram()
         exp = Histogram
         self.assertIsInstance(res, exp)
-        percentage_dict_res = res._percentage_dict
-        rounded_percentage_dict_res = res._rounded_percentage_dict
+        percentage_dict_res = res.get_calculated_percentage()
+        rounded_percentage_dict_res = res.get_calculated_rounded_percentage()
         self.assertDictEqual(percentage_dict_res, {})
         self.assertDictEqual(rounded_percentage_dict_res, {})
 
@@ -21,7 +21,7 @@ class TestHistogram(unittest.TestCase):
         """Calculate percentages, check they match correct perecentages."""
         histogram_object = Histogram()
         dice_faces = [1, 2, 2, 3, 4, 4, 5, 5, 6, 6, 6]
-        histogram_object._calculate_percentage(dice_faces)
+        histogram_object.calculate_percentage(dice_faces)
         expected_percentage_dict = {
             1: 0.09090909090909091,
             2: 0.18181818181818182,
@@ -32,10 +32,11 @@ class TestHistogram(unittest.TestCase):
         }
         expected_rounded_percentage_dict = {1: 1, 2: 2, 3: 1, 4: 2, 5: 2, 6: 3}
         self.assertDictEqual(
-            histogram_object._percentage_dict, expected_percentage_dict
+            histogram_object.get_calculated_percentage(),
+            expected_percentage_dict
         )
         self.assertDictEqual(
-            histogram_object._rounded_percentage_dict,
+            histogram_object.get_calculated_rounded_percentage(),
             expected_rounded_percentage_dict
         )
 

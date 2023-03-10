@@ -13,7 +13,7 @@ class Highscore:
         self._highscores = {}
         self._path = path
 
-    def _get_highscores(self):
+    def get_highscores(self):
         """Load highscore dictionary from highscore file."""
         with open(self._path, "rb") as highscores_file:
             try:
@@ -21,9 +21,13 @@ class Highscore:
             except EOFError:
                 pass
 
+    def get_highscore_dict(self):
+        """Return highscore dictionary."""
+        return self._highscores
+
     def update_highscore(self, user: Player, won: bool):
         """Update highscore dictionary and write to highscore file."""
-        self._get_highscores()
+        self.get_highscores()
         # dictionary -> {name: [wins, games_played]}
         if user.get_name() in self._highscores:
             wins = self._highscores[user.get_name()][0]
@@ -43,7 +47,7 @@ class Highscore:
 
     def update_name(self, current_name, new_name):
         """Load highscores and replace old name with new name."""
-        self._get_highscores()
+        self.get_highscores()
         if (current_name in self._highscores) and (new_name not in
                                                    self._highscores):
             highscore = self._highscores[current_name]
@@ -57,7 +61,7 @@ class Highscore:
     def __str__(self):
         """Get highscores as a formatted string."""
         highscore_string = ""
-        self._get_highscores()  # Get latest highscores before printing
+        self.get_highscores()  # Get latest highscores before printing
         for user, highscore in self._highscores.items():
             highscore_string += (
                 f"Name: {user}, "

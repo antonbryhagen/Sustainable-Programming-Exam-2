@@ -31,7 +31,7 @@ class TestPlayerClass(unittest.TestCase):
         """Create player and then set new name, check that name is updated."""
         test_player = player.Player("Username")
         test_player.set_name("Name1")
-        res = test_player._name
+        res = test_player.get_name()
         exp = "Name1"
         self.assertEqual(res, exp)
 
@@ -39,7 +39,7 @@ class TestPlayerClass(unittest.TestCase):
         """Create player and then set score, check that score is updated."""
         test_player = player.Player("Username")
         test_player.set_score(5)
-        res = test_player._score
+        res = test_player.get_score()
         exp = 5
         self.assertEqual(res, exp)
 

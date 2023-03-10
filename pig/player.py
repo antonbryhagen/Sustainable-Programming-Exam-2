@@ -8,7 +8,6 @@ class Player:
         """Init the object."""
         self._name = name
         self._score = 0  # Start player score at zero
-        self._current_turn_score = 0  # Set current turn score to zero
 
     def get_name(self):
         """Get player name."""
