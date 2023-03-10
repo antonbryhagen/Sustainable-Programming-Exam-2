@@ -7,7 +7,6 @@ from shell import Shell
 
 def main():
     """Execute the main program."""
-    print(__doc__)
     Shell().cmdloop()
 
 
