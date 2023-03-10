@@ -5,7 +5,22 @@ Python Pig game
 
 A template for a Python development project.
 
-[[_TOC_]]
+- [Python Pig game](#python-pig-game)
+  * [Get going](#get-going)
+    + [Check version of Python](#check-version-of-python)
+    + [Python virtual environment](#python-virtual-environment)
+    + [Install the dependencies](#install-the-dependencies)
+    + [Run the code](#run-the-code)
+    + [Run the validators](#run-the-validators)
+    + [Run the unittests](#run-the-unittests)
+    + [Run parts of the testsuite](#run-parts-of-the-testsuite)
+    + [Remove generated files](#remove-generated-files)
+  * [Optional targets](#optional-targets)
+    + [Codestyle with black](#codestyle-with-black)
+  * [More targets](#more-targets)
+    + [Run the game](#run-the-game)
+    + [Credits](#credits)
+    + [License](#license)
 
 This is a school project designed to test us in our ability to write python code using object oriented programming as well as using unittesting and well as makefiles. We were given the choice of makeing the game dice game pig or card game war. We chose pig due to it seeming like a more interesting game to design.
 
