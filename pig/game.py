@@ -53,6 +53,10 @@ class Game:
         self._difficulty = diff
         self.in_round = True
 
+    def get_difficulty(self):
+        """Get the current difficulty."""
+        return self._difficulty
+
     def roll(self):
         """Roll dice and checks if a player has won."""
         self.d_c.roll_dice()
