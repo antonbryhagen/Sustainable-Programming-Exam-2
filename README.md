@@ -199,7 +199,7 @@ Read more on:
 
 ### Run parts of the testsuite
 
-You can also run parts of the testsuite, for examples files or methods in files.
+You can also run parts of the testsuite.
 
 You can run all tests from a testfile.
 
