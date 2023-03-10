@@ -7,7 +7,7 @@
 import time
 from player import Player
 from dice import Dice
-from dice_hand import Dice_hand
+from dice_hand import DiceHand
 from intelligence import Intelligence
 from highscore import Highscore
 
@@ -17,8 +17,8 @@ class Game:
 
     def __init__(self):
         """Init the object."""
-        self.dc = Dice()
-        self.dh = Dice_hand()
+        self.d_c = Dice()
+        self.d_h = DiceHand()
         self.singleplayer = None
         self.p_1 = Player("Temp1")
         self.p_2 = Player("Computer")
@@ -30,6 +30,7 @@ class Game:
         self.highscore_handler = Highscore("pig/highscores.bin")
         self.started = False
         self.in_round = False
+        self.game_won = False
 
     def player_amount(self, one_player):
         """Set the player amount."""
@@ -52,27 +53,29 @@ class Game:
 
     def roll(self):
         """Roll dice and checks if a player has won."""
-        self.dc.roll_dice()
-        if self.p_1_turn:
+        self.d_c.roll_dice()
+        if self.p_1_turn and not self.game_won:
             print("You rolled a:")
-            self.dc.print_face()
-        elif not self.p_1_turn and not self.singleplayer:
+            self.d_c.print_face()
+        elif not self.p_1_turn and not self.singleplayer and not self.game_won:
             print("You rolled a:")
-            self.dc.print_face()
+            self.d_c.print_face()
         else:
-            if self.p_2.get_score() + self.dh.get_rolled() < 100:
+            if self.p_2.get_score() + self.d_h.get_rolled() < 100 and\
+             not self.game_won:
                 print("Computer rolled a:")
-                self.dc.print_face()
-        if self.dc.get_value() == 1:
-            self.dh.add_history(self.dc.get_value())
-            self.dh.clear_rolled()
+                self.d_c.print_face()
+        if self.d_c.get_value() == 1 and not self.game_won:
+            self.d_h.add_history(self.d_c.get_value())
+            self.d_h.clear_rolled()
             self.hold()
         else:
-            self.dh.add_rolled(self.dc.get_value())
-            self.dh.add_history(self.dc.get_value())
+            self.d_h.add_rolled(self.d_c.get_value())
+            self.d_h.add_history(self.d_c.get_value())
             if self.p_1_turn:
-                if self.p_1.get_score() + self.dh.get_rolled() >= 100:
+                if self.p_1.get_score() + self.d_h.get_rolled() >= 100:
                     print(f"{self.p_1.get_name()} Win")
+                    self.game_won = True
                     self.player_won()
                     self.highscore_handler.update_highscore(self.p_1, True)
                     self.in_round = False
@@ -80,8 +83,9 @@ class Game:
                         self.highscore_handler.update_highscore(self.p_2,
                                                                 False)
             else:
-                if self.p_2.get_score() + self.dh.get_rolled() >= 100:
+                if self.p_2.get_score() + self.d_h.get_rolled() >= 100:
                     print(f"{self.p_2.get_name()} Win")
+                    self.game_won = True
                     self.player_won()
                     self.highscore_handler.update_highscore(self.p_1, False)
                     self.in_round = False
@@ -91,42 +95,43 @@ class Game:
     def hold(self):
         """Add score to players total points and changes turn."""
         if self.p_1_turn:
-            self.p_1.set_score(self.p_1.get_score() + self.dh.get_rolled())
+            self.p_1.set_score(self.p_1.get_score() + self.d_h.get_rolled())
             print(
                 f"Player {self.p_1.get_name()} holds at:\
-                {self.dh.get_rolled()}"
+                {self.d_h.get_rolled()}"
             )
             print(
                 f"Player {self.p_1.get_name()} score:\
                 {self.p_1.get_score()}"
             )
             print("---------------------------")
-            self.dh.clear_rolled()
+            self.d_h.clear_rolled()
             self.p_1_turn = False
             if self.singleplayer:
                 self.computer_play()
         else:
-            self.p_2.set_score(self.p_2.get_score() + self.dh.get_rolled())
+            self.p_2.set_score(self.p_2.get_score() + self.d_h.get_rolled())
             print(
                 f"Player {self.p_2.get_name()} holds at:\
-                {self.dh.get_rolled()}"
+                {self.d_h.get_rolled()}"
             )
             print(
                 f"Player {self.p_2.get_name()} score:\
                 {self.p_2.get_score()}"
             )
             print("---------------------------")
-            self.dh.clear_rolled()
+            self.d_h.clear_rolled()
             self.p_1_turn = True
 
     def computer_play(self):
         """Call AI:s method to play and executes its instructions."""
         print("Computer playing:")
         while True:
-            if self.p_2.get_score() + self.dh.get_rolled() >= 100:
+            time.sleep(1.5)
+            if self.p_2.get_score() + self.d_h.get_rolled() >= 100:
                 break
             action = self.computer.play(
-                self._difficulty, self.dh, self.p_1.get_score(),
+                self._difficulty, self.d_h, self.p_1.get_score(),
                 self.p_2.get_score()
             )
             if action == "roll":
@@ -136,7 +141,6 @@ class Game:
                 self.p_1_turn = True
             if self.p_1_turn:
                 break
-            time.sleep(2)
 
     def rename(self, current_name, new_name):
         """Rename specified player and transfer highscore."""
@@ -161,6 +165,7 @@ class Game:
 
     def cheat(self):
         """Set the currently playing players score to 100."""
+        self.game_won = True
         if self.p_1_turn:
             self.p_1.set_score(100)
             self.roll()
@@ -172,10 +177,11 @@ class Game:
         """Reset points and history."""
         self.p_1.set_score(0)
         self.p_2.set_score(0)
-        self.dh.clear_rolled()
-        self.dh.clear_history()
+        self.d_h.clear_rolled()
+        self.d_h.clear_history()
         self.p_1_turn = True
+        self.game_won = False
 
     def player_won(self):
         """Ask if player wants to play again."""
-        print("Play again? Y/N")
+        print("Play again? y/n")
