@@ -15,7 +15,7 @@ class Highscore:
 
     def _get_highscores(self):
         """Load highscore dictionary from highscore file."""
-        with open(self._path, 'rb') as highscores_file:
+        with open(self._path, "rb") as highscores_file:
             try:
                 self._highscores = pickle.load(highscores_file)
             except EOFError:
@@ -38,17 +38,18 @@ class Highscore:
                 highscore = [0, 1]
             self._highscores[user.get_name()] = highscore
 
-        with open(self._path, 'wb') as highscore_file:
+        with open(self._path, "wb") as highscore_file:
             pickle.dump(self._highscores, highscore_file)
-    
+
     def update_name(self, current_name, new_name):
         """Load highscores and replace old name with new name."""
         self._get_highscores()
-        if (current_name in self._highscores) and (new_name not in self._highscores):
+        if (current_name in self._highscores) and (new_name not in
+                                                   self._highscores):
             highscore = self._highscores[current_name]
             del self._highscores[current_name]
             self._highscores[new_name] = highscore
-            with open(self._path, 'wb') as highscore_file:
+            with open(self._path, "wb") as highscore_file:
                 pickle.dump(self._highscores, highscore_file)
         elif new_name in self._highscores:
             print("New name already exists, can't transfer highscore.")
@@ -59,8 +60,8 @@ class Highscore:
         self._get_highscores()  # Get latest highscores before printing
         for user, highscore in self._highscores.items():
             highscore_string += (
-                f'Name: {user}, '
-                f'Wins: {highscore[0]}, '
-                f'Games played: {highscore[1]}\n'
+                f"Name: {user}, "
+                f"Wins: {highscore[0]}, "
+                f"Games played: {highscore[1]}\n"
             )
         return highscore_string
