@@ -39,9 +39,9 @@ class Histogram:
             for j in range(1, 7):
                 if self._rounded_percentage_dict[j] >= i:
                     if j == 1:
-                        row += f">={(i)*10:3}% | █"
+                        row += f">={(i)*10:3}% | *"
                     else:
-                        row += "█"
+                        row += "*"
                 else:
                     if j == 1:
                         row += f">={(i)*10:3}% |  "
