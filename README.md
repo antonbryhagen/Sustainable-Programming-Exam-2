@@ -18,6 +18,8 @@ Python Pig game
     + [Run the validators](#run-the-validators)
     + [Run the unittests](#run-the-unittests)
     + [Run parts of the testsuite](#run-parts-of-the-testsuite)
+    + [Generate documentation and UML diagrams](#generate-documentation-and-uml-diagrams)
+- [Generate UML diagrams](#generate-uml-diagrams)
     + [Remove generated files](#remove-generated-files)
   * [Optional targets](#optional-targets)
     + [Codestyle with black](#codestyle-with-black)
@@ -210,7 +212,21 @@ You can run all tests from a testfile.
 python -m unittest discover -s pig -p 'test_game.py'
 ```
 
+### Generate documentation and UML diagrams
+You re-generate documentation and the UML diagrams
+```
+# Generate both documentation and UML
+make doc
+```
 
+You can also generate documentation and UML diagrams separately
+```
+# Generate documentation
+make pdoc
+```
+
+# Generate UML diagrams
+make pyreverse
 
 ### Remove generated files
 
