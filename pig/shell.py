@@ -92,21 +92,25 @@ class Shell(cmd.Cmd):
             not self.game.singleplayer and not
             self.game.created_players
         ):
-            self.game.player(arg)
-            print(f"Welcome {arg}")
-            if self.game.singleplayer:
-                print("Type 'difficulty 1, 2 or 3' to select difficulty")
-            if not self.game.singleplayer and not self.game.created_players:
-                print("Type 'player name' to set second players username")
-            if not self.game.singleplayer and self.game.created_players:
-                print("Type 'roll' to roll the dice and 'hold' to end your "
-                      "turn")
+            if not arg:
+                print("Missing argument, try player TestUser")
+            else:
+                self.game.player(arg)
+                print(f"Welcome {arg}")
+                if self.game.singleplayer:
+                    print("Type 'difficulty 1, 2 or 3' to select difficulty")
+                if (not self.game.singleplayer
+                        and not self.game.created_players):
+                    print("Type 'player name' to set second players username")
+                if not self.game.singleplayer and self.game.created_players:
+                    print("Type 'roll' to roll the dice and 'hold' to end "
+                          "your turn")
         else:
             print("Already created player(s).")
 
     def do_difficulty(self, arg):
         """Select game difficulty when playing against computer."""
-        if self.game.singleplayer:
+        if self.game.singleplayer and self.game._created_first_player:
             if arg <= "3" and arg >= "1":
                 self.game.difficulty(arg)
                 print("Type 'roll' to roll the dice and 'hold' to end your "
@@ -135,9 +139,14 @@ class Shell(cmd.Cmd):
         if (
             self.game._created_first_player or self.game.created_players
         ) and not self.game.in_round:
-            arg2 = arg1.split()[1]
-            arg1 = arg1.split()[0]
-            self.game.rename(arg1, arg2)
+            if (not arg1) or (" " not in arg1):
+                print("Missing argument, try rename TestUser User")
+            else:
+                arg2 = arg1.split()[1]
+                arg1 = arg1.split()[0]
+                self.game.rename(arg1, arg2)
+        elif self.game.in_round:
+            print("Can't rename while in-game.")
         else:
             print("There are currently no players to rename.")
 
