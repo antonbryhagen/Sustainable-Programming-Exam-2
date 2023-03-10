@@ -1,7 +1,7 @@
 """Handles current hand."""
 
 
-class Dice_hand:
+class DiceHand:
     """Dice_hand class."""
 
     def __init__(self):

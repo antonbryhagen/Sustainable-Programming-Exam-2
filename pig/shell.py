@@ -146,7 +146,7 @@ class Shell(cmd.Cmd):
         if not self.game.in_round and self.game.started:
             print(self.game.highscore_handler)
 
-    def do_Y(self, _):
+    def do_y(self, _):
         """Restart game from beginning."""
         self.game.restart()
         self.game.singleplayer = None
@@ -155,7 +155,7 @@ class Shell(cmd.Cmd):
         self.game.in_round = False
         self.game.print_menu()
 
-    def do_N(self, arg):
+    def do_n(self, arg):
         """Leave the game."""
         return self.do_exit(arg)
 

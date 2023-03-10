@@ -10,6 +10,8 @@ class Dice:
         """Init the object."""
         self.__value = 0
         self.output = ""
+        self.__lower_value = 1
+        self.__higher_value = 7
 
     def get_value(self):
         """Return value of dice."""
@@ -17,21 +19,20 @@ class Dice:
 
     def roll_dice(self):
         """Roll dice."""
-        self.__lowerValue = 1
-        self.__higherValue = 7
-        self.__value = random.randrange(self.__lowerValue, self.__higherValue)
+        self.__value = random.randrange(self.__lower_value,
+                                        self.__higher_value)
 
     def get_higher_value(self):
         """Return maximum posssible result of roll."""
-        return self.__higherValue
+        return self.__higher_value
 
     def get_lower_value(self):
         """Return minimum possible result of roll."""
-        return self.__lowerValue
+        return self.__lower_value
 
-    def set_value(self, newValue):
+    def set_value(self, new_value):
         """Set value of dice."""
-        self.__value = newValue
+        self.__value = new_value
         print(self.__value)
 
     def print_face(self):
