@@ -16,6 +16,9 @@ from histogram import Histogram
 class Game:
     """Game class."""
 
+    # pylint: disable=too-many-instance-attributes
+    # Disabled since game needs many attributes to work
+
     def __init__(self, path):
         """Init the object."""
         self.d_c = Dice()
@@ -24,7 +27,7 @@ class Game:
         self.p_1 = Player("Temp1")
         self.p_2 = Player("Computer")
         self.p_1_turn = True
-        self._created_first_player = False
+        self.created_first_player = False
         self.created_players = False
         self.diff = 1
         self.computer = Intelligence()
@@ -43,10 +46,10 @@ class Game:
 
     def player(self, name):
         """Create new player object."""
-        if not self._created_first_player:
+        if not self.created_first_player:
             self.p_1 = Player(name)
-            self._created_first_player = True
-        elif not self.singleplayer and self._created_first_player:
+            self.created_first_player = True
+        elif not self.singleplayer and self.created_first_player:
             self.p_2 = Player(name)
             self.created_players = True
             self.in_round = True
@@ -59,6 +62,14 @@ class Game:
     def get_difficulty(self):
         """Get the current difficulty."""
         return self.diff
+
+    def all_faces(self):
+        """Check if all dice faces are in history."""
+        all_faces = True
+        for face in range(1, 7):
+            if face not in self.d_h.get_history():
+                all_faces = False
+        return all_faces
 
     def roll(self):
         """Roll dice and checks if a player has won."""
@@ -84,11 +95,7 @@ class Game:
             if self.p_1_turn:
                 if self.p_1.get_score() + self.d_h.get_rolled() >= 100:
                     print(f"{self.p_1.get_name()} Win")
-                    all_faces = True
-                    for x in range(1, 7):
-                        if x not in self.d_h.get_history():
-                            all_faces = False
-                    if all_faces:
+                    if self.all_faces():
                         print(self.histogram_handler.get_histogram(
                             self.d_h.get_history()))
                     self.game_won = True
@@ -101,11 +108,7 @@ class Game:
             else:
                 if self.p_2.get_score() + self.d_h.get_rolled() >= 100:
                     print(f"{self.p_2.get_name()} Win")
-                    all_faces = True
-                    for x in range(1, 7):
-                        if x not in self.d_h.get_history():
-                            all_faces = False
-                    if all_faces:
+                    if self.all_faces():
                         print(self.histogram_handler.get_histogram(
                             self.d_h.get_history()))
                     self.game_won = True

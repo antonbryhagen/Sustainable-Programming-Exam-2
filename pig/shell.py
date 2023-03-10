@@ -88,7 +88,7 @@ class Shell(cmd.Cmd):
     def do_player(self, arg):
         """Enter a player name."""
         if (self.game.singleplayer and not
-            self.game._created_first_player) or (
+            self.game.created_first_player) or (
             not self.game.singleplayer and not
             self.game.created_players
         ):
@@ -110,8 +110,8 @@ class Shell(cmd.Cmd):
 
     def do_difficulty(self, arg):
         """Select game difficulty when playing against computer."""
-        if self.game.singleplayer and self.game._created_first_player:
-            if arg <= "3" and arg >= "1":
+        if self.game.singleplayer and self.game.created_first_player:
+            if "3" >= arg >= "1":
                 self.game.difficulty(arg)
                 print("Type 'roll' to roll the dice and 'hold' to end your "
                       "turn")
@@ -137,7 +137,7 @@ class Shell(cmd.Cmd):
     def do_rename(self, arg1):
         """Rename specified player."""
         if (
-            self.game._created_first_player or self.game.created_players
+            self.game.created_first_player or self.game.created_players
         ) and not self.game.in_round:
             if (not arg1) or (" " not in arg1):
                 print("Missing argument, try rename TestUser User")
@@ -159,7 +159,7 @@ class Shell(cmd.Cmd):
         """Restart game from beginning."""
         self.game.restart()
         self.game.singleplayer = None
-        self.game._created_first_player = False
+        self.game.created_first_player = False
         self.game.created_players = False
         self.game.in_round = False
         self.game.print_menu()
@@ -169,7 +169,6 @@ class Shell(cmd.Cmd):
         return self.do_exit(arg)
 
     def do_exit(self, _):
-        # pylint: disable=no-self-use
         """Leave the game."""
         print("Bye bye - see ya soon again")
         return True
